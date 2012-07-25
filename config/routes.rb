@@ -6,10 +6,13 @@ ComicBook::Application.routes.draw do
 
   get '/comic/:year/:month/:day', :to => 'comics#show_by_day'
 
-  resources :comics, :only => [:index, :show]
+  resources :comics, :only => [:index, :show] do
+    resource :comments, :only => :create
+  end
   resources :series, :only => [:index, :show] do
     resources :comics, :only => [:index, :show]
   end
+
 
   namespace :manage do
     resources :comics

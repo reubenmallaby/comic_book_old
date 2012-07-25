@@ -26,11 +26,11 @@
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              comic_path, :class => 'btn'  %>
+              manage_comic_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_comic_path(@comic), :class => 'btn' %>
+              edit_manage_comic_path(@comic), :class => 'btn' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              comic_path(@comic),
+              manage_comic_path(@comic),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>

@@ -1,0 +1,16 @@
+= form_for @comment, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :user_id, :class => 'control-label'
+    .controls
+      = f.number_field :user_id, :class => 'number_field'
+  .control-group
+    = f.label :comic_id, :class => 'control-label'
+    .controls
+      = f.number_field :comic_id, :class => 'number_field'
+  .control-group
+    = f.label :message, :class => 'control-label'
+    .controls
+      = f.text_area :message, :class => 'text_area'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), comments_path, :class => 'btn'

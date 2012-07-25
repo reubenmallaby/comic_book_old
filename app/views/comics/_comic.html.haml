@@ -1,0 +1,24 @@
+.page-header
+  %h1= @comic.name
+
+.row
+  .span4 Calendar
+  .span4.comic= image_tag @comic.image.url
+  .span4 &nbsp;
+.row
+  .span4 &nbsp;
+  .span4= @comic.description
+  .span4 &nbsp;
+%br
+.row
+  .span3 &nbsp;
+  .navbar.span6
+    .navbar-inner
+      .container
+        %ul.nav
+          %li.span1= link_to "First", "#"
+          %li.span1= link_to "Previous", "#"
+          %li.span1= link_to "Latest", "#"
+          %li.span1= link_to "Next", "#"
+          %li.span1= link_to "Last", "#"
+  .span3 &nbsp;

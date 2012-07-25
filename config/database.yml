@@ -14,8 +14,8 @@ development:
   reconnect: false
   database: comic_book_development
   pool: 5
-  username: root
-  password:
+  username: comic
+  password: comic_dev
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -27,9 +27,8 @@ test:
   reconnect: false
   database: comic_book_test
   pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: comic
+  password: comic_dev
 
 production:
   adapter: mysql2
@@ -37,6 +36,5 @@ production:
   reconnect: false
   database: comic_book_production
   pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: comic
+  password: comic_dev

@@ -1,4 +1,8 @@
 ComicBook::Application.routes.draw do
+  resources :add_image_to_comics
+
+  resources :comics
+
   resources :series
 
   # The priority is based upon order of creation:

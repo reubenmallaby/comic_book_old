@@ -7,6 +7,7 @@ gem 'rails', '3.2.6'
 
 gem 'mysql2'
 gem 'haml'
+gem 'haml-rails'
 gem "paperclip", "~> 3.0"
 
 # Gems used only for assets and not required

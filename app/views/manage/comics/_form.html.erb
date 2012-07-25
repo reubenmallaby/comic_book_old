@@ -1,8 +1,8 @@
-<%= form_for @comic, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for [:manage, @comic], :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <div class="control-group">
     <%= f.label :series_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.number_field :series_id, :class => 'number_field' %>
+      <%= f.select :series_id, @series.map {|s| [s.name, s.id] }, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">
@@ -30,33 +30,15 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :image_file_name, :class => 'control-label' %>
+    <%= f.label :image, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :image_file_name, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :image_content_type, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :image_content_type, :class => 'text_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :image_file_size, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :image_file_size, :class => 'number_field' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :image_updated_at, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.datetime_select :image_updated_at, :class => 'datetime_select' %>
+      <%= f.file_field :image, :class => 'file_field' %>
     </div>
   </div>
 
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                comic_path, :class => 'btn' %>
+                manage_comics_path, :class => 'btn' %>
   </div>
 <% end %>

@@ -3,6 +3,8 @@ class Serie < ActiveRecord::Base
 
   has_many :comics
 
+  scope :available, where(:available => true)
+
   def increment_counter
     self.update_attribute :comic_count, self.comic_count + 1
   end

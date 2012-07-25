@@ -27,6 +27,7 @@ class Manage::ComicsController < Manage::BaseController
   # GET /comics/new.json
   def new
     @comic = Comic.new
+    @series = Serie.available
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +38,7 @@ class Manage::ComicsController < Manage::BaseController
   # GET /comics/1/edit
   def edit
     @comic = Comic.find(params[:id])
+    @series = Serie.available
   end
 
   # POST /comics
@@ -46,9 +48,10 @@ class Manage::ComicsController < Manage::BaseController
 
     respond_to do |format|
       if @comic.save
-        format.html { redirect_to @comic, notice: 'Comic was successfully created.' }
+        format.html { redirect_to [:manage, @comic], notice: 'Comic was successfully created.' }
         format.json { render json: @comic, status: :created, location: @comic }
       else
+        @series = Serie.available
         format.html { render action: "new" }
         format.json { render json: @comic.errors, status: :unprocessable_entity }
       end
@@ -62,9 +65,10 @@ class Manage::ComicsController < Manage::BaseController
 
     respond_to do |format|
       if @comic.update_attributes(params[:comic])
-        format.html { redirect_to @comic, notice: 'Comic was successfully updated.' }
+        format.html { redirect_to [:manage, @comic], notice: 'Comic was successfully updated.' }
         format.json { head :no_content }
       else
+        @series = Serie.available
         format.html { render action: "edit" }
         format.json { render json: @comic.errors, status: :unprocessable_entity }
       end
@@ -78,7 +82,7 @@ class Manage::ComicsController < Manage::BaseController
     @comic.destroy
 
     respond_to do |format|
-      format.html { redirect_to comics_url }
+      format.html { redirect_to manage_comics_url }
       format.json { head :no_content }
     end
   end

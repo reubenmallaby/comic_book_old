@@ -1,25 +1,42 @@
 <%- model_class = Comic -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:publish_date) %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @comics.each do |comic| %>
-      <tr>
-        <td><%= link_to comic.name, comic_path(comic) %></td>
-        <td><%= image_tag comic.image.url(:thumb) %></td>
-        <td><%= comic.description %></td>
-        <td><%= comic.publish_date %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
+<div class="page-header">
+  <h1><%= @comic.name %></h1>
+</div>
+
+<div class="row">
+  <div class="span4">
+    Calendar
+  </div>
+  <div class="span4 comic">
+  <%= image_tag @comic.image.url %>
+  </div>
+  <div class="span4">&nbsp;</div>
+</div>
+<div class="row">
+  <div class="span4">&nbsp;</div>
+  <div class="span4"><%= @comic.description %></div>
+  <div class="span4">&nbsp;</div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="span3">&nbsp;</div>
+  <div class='navbar span6'>
+    <nav class='navbar-inner'>
+      <div class='container'>
+        <ul class='nav'>
+          <li class="span1"><a href="#">First</a></li>
+          <li class="span1"><a href="#">Previous</a></li>
+          <li class="span1"><a href="#">Latest</a></li>
+          <li class="span1"><a href="#">Next</a></li>
+          <li class="span1"><a href="#">Last</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="span3">&nbsp;</div>
+</div>
+
+D

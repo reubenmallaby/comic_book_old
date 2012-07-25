@@ -9,6 +9,11 @@ class Comic < ActiveRecord::Base
 
   after_create :increment_serie
 
+  scope :latest, order("publish_date DESC")
+
+
+
+
   private
 
   def increment_serie

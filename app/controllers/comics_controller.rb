@@ -1,24 +1,25 @@
 class ComicsController < ApplicationController
 
-  # GET /comics
-  # GET /comics.json
   def index
-    @comics = Comic.all
+    @comics = Comic.latest.limit(10 )
+    @comic = Comic.latest.first
+  end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @comics }
+  def show
+    if params[:id]
+      @comic = Comic.find(params[:id])
+    else
+      @comic = Comic.latest.first
     end
   end
 
-  # GET /comics/1
-  # GET /comics/1.json
-  def show
-    @comic = Comic.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @comic }
+  def show_by_day
+    begin
+      @date = Date.parse "#{params[:day]}-#{params[:month]}-#{params[:year]}"
+      @comic = Comic.where(:publish_date => @date).first
+    rescue Exception => e
+      raise ActionController::RoutingError.new('No comic found')
+      #render :text => "#{e.message} ..............  #{params.inspect}"
     end
   end
 

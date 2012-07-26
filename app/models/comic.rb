@@ -5,7 +5,7 @@ class Comic < ActiveRecord::Base
   belongs_to :serie
 
   has_attached_file :image,
-                    :styles => { :medium => "240x240>", :thumb => "80x80>" },
+                    :styles => { :original => "800x600>", :thumb => "100x100>" },
                     :url => '/comics/:id/:style/:filename'
 
   has_one :previous, :class_name => "Comic", :foreign_key => "previous_id"

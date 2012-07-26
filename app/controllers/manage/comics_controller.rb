@@ -20,8 +20,8 @@ class Manage::ComicsController < Manage::BaseController
 
   def create
     @comic = Comic.new(params[:comic])
-    @comic.previous_id = Comic.before(@comic.publish_date).first.id
-    @comic.next_id = Comic.after(@comic.publish_date).first.id
+    @comic.previous = Comic.before(@comic.publish_date).first
+    @comic.next = Comic.after(@comic.publish_date).first
     if @comic.save
       redirect_to [:manage, @comic], notice: 'Comic was successfully created.'
     else

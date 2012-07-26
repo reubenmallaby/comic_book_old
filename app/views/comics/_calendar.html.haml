@@ -1,11 +1,11 @@
 %table.calendar.table-striped.table-condensed
   %thead
     %tr
-      %th{ rowspan: 2}= link_to "&laquo;".html_safe, archived_path(@date.year - 1, @date.month, 1)
-      %th{ rowspan: 2}= link_to "<".html_safe, archived_path((@date - 1.month).year, (@date - 1.month).month, 1)
+      %th{ rowspan: 2}= link_to "".html_safe, archived_path(@date.year - 1, @date.month, 1), :class => "icon-backward", :title => "L:ast year"
+      %th{ rowspan: 2}= link_to "".html_safe, archived_path((@date - 1.month).year, (@date - 1.month).month, 1), :class => "icon-step-backward", :title => "Last month"
       %th{ colspan: 3}= @date.year
-      %th{ rowspan: 2}= link_to ">".html_safe, archived_path((@date + 1.month).year, (@date + 1.month).month, 1)
-      %th{ rowspan: 2}= link_to "&raquo;".html_safe, archived_path(@date.year + 1, @date.month, 1 )
+      %th{ rowspan: 2}= link_to "".html_safe, archived_path((@date + 1.month).year, (@date + 1.month).month, 1), :class => "icon-step-forward", :title => "Next month"
+      %th{ rowspan: 2}= link_to "".html_safe, archived_path(@date.year + 1, @date.month, 1 ), :class => "icon-forward", :title => "Next year"
     %tr
       %th{ colspan: 3}= content_tag :span, (Date::MONTHNAMES[@date.month])
     %tr

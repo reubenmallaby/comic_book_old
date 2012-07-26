@@ -22,27 +22,27 @@
         %ul.nav
           %li.span1
             - unless @first == @comic
-              = link_to "First", archived_path(@first.publish_date.year, @first.publish_date.month, @first.publish_date.day), :class => "icon-backward"
+              = link_to "", archived_path(@first.publish_date.year, @first.publish_date.month, @first.publish_date.day), :class => "icon-backward", :title => "First"
             - else
-              = link_to "First", "#", :class => "icon-backward"
+              = link_to "", "#", :class => "icon-backward", :title => "First"
           %li.span1
             - if @comic
               - if @comic.previous.nil?
-                = link_to "Previous", "#", :class => "icon-step-backward"
+                = link_to "", "#", :class => "icon-step-backward", :title => "Previous"
               - else
-                = link_to "Previous", archived_path(@comic.previous.publish_date.year, @comic.previous.publish_date.month, @comic.previous.publish_date.day), :class => "icon-step-backward"
+                = link_to "", archived_path(@comic.previous.publish_date.year, @comic.previous.publish_date.month, @comic.previous.publish_date.day), :class => "icon-step-backward", :title => "Previous"
           %li.span1 &nbsp;
           %li.span1
             - if @comic
               - if @comic.next.nil?
-                = link_to "Next", "#", :class => "icon-step-forward"
+                = link_to "", "#", :class => "icon-step-forward", :title => "Next"
               - else
-                = link_to "Next", archived_path(@comic.next.publish_date.year, @comic.next.publish_date.month, @comic.next.publish_date.day), :class => "icon-step-forward"
+                = link_to "", archived_path(@comic.next.publish_date.year, @comic.next.publish_date.month, @comic.next.publish_date.day), :class => "icon-step-forward", :title => "Next"
           %li.span1
             - unless @latest == @comic
-              = link_to "Latest", archived_path(@latest.publish_date.year, @latest.publish_date.month, @latest.publish_date.day), :class => "icon-forward"
+              = link_to "", archived_path(@latest.publish_date.year, @latest.publish_date.month, @latest.publish_date.day), :class => "icon-forward", :title => "Latest"
             - else
-              = link_to "Latest", "#", :class => "icon-forward"
+              = link_to "", "#", :class => "icon-forward", :title => "Latest"
   .span3 &nbsp;
 %br
 - if @comic

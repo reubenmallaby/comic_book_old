@@ -23,7 +23,7 @@ class Manage::ComicsController < Manage::BaseController
     @comic.previous = Comic.before(@comic.publish_date).first
     @comic.next = Comic.after(@comic.publish_date).first
     if @comic.save
-      redirect_to [:manage, @comic], notice: 'Comic was successfully created.'
+      redirect_to manage_comics_url, notice: 'Comic was successfully created.'
     else
       @series = Serie.available
       render action: "new"
@@ -33,7 +33,7 @@ class Manage::ComicsController < Manage::BaseController
   def update
     @comic = Comic.find(params[:id])
     if @comic.update_attributes(params[:comic])
-      redirect_to [:manage, @comic], notice: 'Comic was successfully updated.'
+      redirect_to manage_comics_url, notice: 'Comic was successfully updated.'
     else
       @series = Serie.available
       render action: "edit"

@@ -16,9 +16,7 @@ ComicBook::Application.routes.draw do
 
   namespace :manage do
     resources :comics
-    resources :series do
-      resources :comics
-    end
+    resources :series
     resources :users
   end
 

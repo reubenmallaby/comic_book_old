@@ -4,7 +4,7 @@ ComicBook::Application.routes.draw do
   get 'profile/edit', :to => 'users#edit',    :as => :edit_profile
   post 'profile',     :to => 'users#update',  :as => :update_profile
 
-  get '/comic/:year/:month/:day', :to => 'comics#show_by_day'
+  get '/comic/:year/:month/:day', :to => 'comics#show_by_day', :as => :archived
 
   resources :comics, :only => [:index, :show] do
     resource :comments, :only => :create

@@ -1,4 +1,5 @@
 class Comic < ActiveRecord::Base
+
   attr_accessible :description, :name, :publish_date, :series_id, :image, :sold
 
   belongs_to :serie
@@ -7,10 +8,27 @@ class Comic < ActiveRecord::Base
                     :styles => { :medium => "240x240>", :thumb => "80x80>" },
                     :url => '/comics/:id/:style/:filename'
 
+  has_one :previous, :class_name => "Comic", :foreign_key => "previous_id"
+  has_one :next,     :class_name => "Comic", :foreign_key => "next_id"
+
+  has_many :comments
+
   after_create :increment_serie
 
-  scope :latest, order("publish_date DESC")
-
+  scope :latest, order("publish_date DESC").limit(1)
+  scope :oldest, order("publish_date ASC").limit(1)
+  scope :published, where("publish_date <= ?", Date.today)
+  scope :for_month, lambda { |date|
+    where("publish_date between ? and ?", date, date + 1.month)
+  }
+  scope :before, lambda { |date|
+    where("publish_date > ? ", date).
+      latest
+  }
+  scope :after, lambda { |date|
+    where("publish_date < ? ", date).
+      oldest
+  }
 
 
 

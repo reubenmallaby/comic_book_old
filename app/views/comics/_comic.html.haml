@@ -1,13 +1,17 @@
 .page-header
-  %h1= @comic.name
+  %h1= @comic.name if @comic
 
 .row
-  .span4 Calendar
-  .span4.comic= image_tag @comic.image.url
-  .span4 &nbsp;
+  .span2= render :partial => "calendar", :locals => { :date => @date }
+  .span8.comic
+    = image_tag @comic.image.url if @comic
+    = image_tag "none.png" unless @comic
+  .span2= render :partial => "shared/social"
 .row
   .span4 &nbsp;
-  .span4= @comic.description
+  .span4
+    = @comic.description if @comic
+    = "No comic found" unless @comic
   .span4 &nbsp;
 %br
 .row
@@ -16,9 +20,49 @@
     .navbar-inner
       .container
         %ul.nav
-          %li.span1= link_to "First", "#"
-          %li.span1= link_to "Previous", "#"
-          %li.span1= link_to "Latest", "#"
-          %li.span1= link_to "Next", "#"
-          %li.span1= link_to "Last", "#"
+          %li.span1
+            - unless @first == @comic
+              = link_to "First", archived_path(@first.publish_date.year, @first.publish_date.month, @first.publish_date.day), :class => "icon-backward"
+            - else
+              = link_to "First", "#", :class => "icon-backward"
+          %li.span1
+            - if @comic
+              - if @comic.previous.nil?
+                = link_to "Previous", "#", :class => "icon-step-backward"
+              - else
+                = link_to "Previous", archived_path(@comic.previous.publish_date.year, @comic.previous.publish_date.month, @comic.previous.publish_date.day), :class => "icon-step-backward"
+          %li.span1 &nbsp;
+          %li.span1
+            - if @comic
+              - if @comic.next.nil?
+                = link_to "Next", "#", :class => "icon-step-forward"
+              - else
+                = link_to "Next", archived_path(@comic.next.publish_date.year, @comic.next.publish_date.month, @comic.next.publish_date.day), :class => "icon-step-forward"
+          %li.span1
+            - unless @latest == @comic
+              = link_to "Latest", archived_path(@latest.publish_date.year, @latest.publish_date.month, @latest.publish_date.day), :class => "icon-forward"
+            - else
+              = link_to "Latest", "#", :class => "icon-forward"
   .span3 &nbsp;
+%br
+- if @comic
+  .row
+    .span3 &nbsp;
+    .navbar.span6
+      .navbar-inner
+        .container
+          %ul.nav
+            %li
+              %h2 Comments
+    .span3 &nbsp;
+  .row
+    .span3 &nbsp;
+    .span6
+      - if signed_in?
+        = form_for [@comic, Comment.new], :remote => true do |f|
+          = f.text_area :message, :class => "span6", :rows => 4
+          %br
+          = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary"
+      #comments= render @comic.comments.reversed
+    .span3 &nbsp;
+  %br

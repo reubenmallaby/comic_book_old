@@ -1,0 +1,4 @@
+-#.fb-like-box{:"data-href" => request.original_url, :"data-width" => 292, :"data-show-faces" => "false", :"data-border-color" => "#FFFFFF", :"data-stream" => "false", :"data-header" => "false"}
+%ul.unstyled
+  %li= link_to "Share on Facebook", "http://www.facebook.com/sharer.php?u=#{request.original_url}"
+  %li= link_to "Share on Twitter", "http://twitter.com/share?url=#{request.original_url}"

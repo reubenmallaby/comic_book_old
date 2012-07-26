@@ -2,7 +2,8 @@ class CommentsController < ApplicationController
   before_filter :authorize
 
   def create
-    @comment = Comment.new(params[:comment])
+    @comment = current_user.comments.new(params[:comment])
+    @comment.comic_id = params[:comic_id]
     respond_to do |format|
       if @comment.save
         format.js

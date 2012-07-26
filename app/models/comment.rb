@@ -4,4 +4,6 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :comic
 
+  scope :reversed, order("created_at DESC")
+
 end

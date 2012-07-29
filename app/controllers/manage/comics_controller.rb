@@ -1,7 +1,7 @@
 class Manage::ComicsController < Manage::BaseController
 
   def index
-    @comics = Comic.all
+    @comics = Comic.reversed
   end
 
   def show
@@ -32,6 +32,8 @@ class Manage::ComicsController < Manage::BaseController
 
   def update
     @comic = Comic.find(params[:id])
+    @comic.previous = Comic.before(@comic.publish_date).first
+    @comic.next = Comic.after(@comic.publish_date).first
     if @comic.update_attributes(params[:comic])
       redirect_to manage_comics_url, notice: 'Comic was successfully updated.'
     else

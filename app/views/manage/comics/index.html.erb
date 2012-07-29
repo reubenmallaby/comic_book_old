@@ -12,7 +12,6 @@
       <th><%= model_class.human_attribute_name(:publish_date) %></th>
       <th><%= model_class.human_attribute_name(:sold) %></th>
       <th><%= model_class.human_attribute_name(:image_file_name) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -26,7 +25,6 @@
         <td><%= comic.publish_date %></td>
         <td><%= comic.sold %></td>
         <td><%= image_tag comic.image.url(:thumb) %></td>
-        <td><%=l comic.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_manage_comic_path(comic), :class => 'btn btn-mini' %>

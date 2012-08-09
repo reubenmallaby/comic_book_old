@@ -34,7 +34,7 @@
 - if @comic
   .row
     .span2 &nbsp;
-    .well.span8
+    .span8
       %h2 Comments
       - if signed_in?
         = form_for [@comic, Comment.new], :remote => true do |f|

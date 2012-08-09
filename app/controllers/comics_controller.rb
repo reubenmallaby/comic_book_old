@@ -9,7 +9,7 @@ class ComicsController < ApplicationController
   end
 
   def archive
-    @comics = Comic.latest
+    @comics = Comic.all
   end
 
   def show

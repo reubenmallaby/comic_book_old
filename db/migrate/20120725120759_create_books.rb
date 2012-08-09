@@ -1,6 +1,6 @@
-class CreateSeries < ActiveRecord::Migration
+class CreateBooks < ActiveRecord::Migration
   def change
-    create_table :series do |t|
+    create_table :books do |t|
       t.string  :name
       t.text    :description
       t.integer :comic_count, :default => 0

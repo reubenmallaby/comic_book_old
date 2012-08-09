@@ -10,12 +10,12 @@ class Manage::ComicsController < Manage::BaseController
 
   def new
     @comic = Comic.new
-    @series = Serie.available
+    @books = Book.available
   end
 
   def edit
     @comic = Comic.find(params[:id])
-    @series = Serie.available
+    @books = Book.available
   end
 
   def create
@@ -25,7 +25,7 @@ class Manage::ComicsController < Manage::BaseController
     if @comic.save
       redirect_to manage_comics_url, notice: 'Comic was successfully created.'
     else
-      @series = Serie.available
+      @books = Book.available
       render action: "new"
     end
   end
@@ -37,7 +37,7 @@ class Manage::ComicsController < Manage::BaseController
     if @comic.update_attributes(params[:comic])
       redirect_to manage_comics_url, notice: 'Comic was successfully updated.'
     else
-      @series = Serie.available
+      @books = Book.available
       render action: "edit"
     end
   end

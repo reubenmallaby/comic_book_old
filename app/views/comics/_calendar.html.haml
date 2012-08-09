@@ -21,7 +21,7 @@
       %tr
         - (0..6).each do |c|
           - dt = c + r * 7 - @first_day
-          %td{ class: (@comic and dt == @comic.publish_date.day) ? "current" : "" }
+          %td{ class: (@comic and dt == @comic.publish_date.day) ? "current label-info" : "" }
             - unless dt > @num_days or dt < 1
               - if @comics_for_month[dt].blank?
                 = content_tag :span, dt

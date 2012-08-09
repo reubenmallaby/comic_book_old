@@ -1,8 +1,8 @@
 <%= form_for [:manage, @comic], :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <div class="control-group">
-    <%= f.label :series_id, :class => 'control-label' %>
+    <%= f.label :book_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :series_id, @series.map {|s| [s.name, s.id] }, :class => 'number_field' %>
+      <%= f.select :book_id, @books.map {|b| [b.name, b.id] }, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">

@@ -2,17 +2,29 @@
 %ul.nav
   %li= link_to "Archive", comics_path
   - if signed_in? and current_user.admin
-    %li= link_to "Manage Comics", manage_comics_path
-    -#%li= link_to "Manage Series", manage_series_path
+    %li.dropdown
+      %a.dropdown-toggle{:href => "#", :"data-toggle" => "dropdown"}
+        Comics
+        %b.caret
+      %ul.dropdown-menu
+        %li= link_to "Manage", manage_comics_path
+        %li= link_to "New", new_manage_comic_path
+    %li.dropdown
+      %a.dropdown-toggle{:href => "#", :"data-toggle" => "dropdown"}
+        Books
+        %b.caret
+      %ul.dropdown-menu
+        %li= link_to "Manage", manage_books_path
+        %li= link_to "New", new_manage_book_path
+%ul.nav.pull-right
   - if signed_in?
-    %li
-      = link_to('Edit account', edit_profile_path)
+    %li.dropdown
+      %a.dropdown-toggle{:href => "#", :"data-toggle" => "dropdown"}
+        = current_user.name
+        %b.caret
+      %ul.dropdown-menu
+        %li= link_to('Edit account', edit_profile_path)
+        %li= link_to('Logout', sign_out_path, :method=>'delete')
   - else
-    %li
-      = link_to('Sign up', sign_up_path)
-  - if signed_in?
-    %li
-      = link_to('Logout', sign_out_path, :method=>'delete')
-  - else
-    %li
-      = link_to('Sign in',sign_in_path)
+    %li= link_to('Sign up', sign_up_path)
+    %li= link_to('Sign in',sign_in_path)

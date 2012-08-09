@@ -1,4 +1,4 @@
-class Serie < ActiveRecord::Base
+class Book < ActiveRecord::Base
   attr_accessible :available, :description, :name
 
   has_many :comics

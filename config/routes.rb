@@ -9,14 +9,14 @@ ComicBook::Application.routes.draw do
   resources :comics, :only => [:index, :show] do
     resource :comments, :only => :create
   end
-  resources :series, :only => [:index, :show] do
+  resources :books, :only => [:index, :show] do
     resources :comics, :only => [:index, :show]
   end
 
 
   namespace :manage do
+    resources :books
     resources :comics
-    resources :series
     resources :users
   end
 

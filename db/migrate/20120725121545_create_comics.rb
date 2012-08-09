@@ -1,7 +1,7 @@
 class CreateComics < ActiveRecord::Migration
   def change
     create_table :comics do |t|
-      t.integer :series_id
+      t.integer :book_id
       t.string :name
       t.string :description
       t.date :publish_date

@@ -1,6 +1,6 @@
 class Comic < ActiveRecord::Base
 
-  attr_accessible :description, :name, :publish_date, :series_id, :image, :sold
+  attr_accessible :description, :name, :publish_date, :series_id, :image, :sold, :image_file_name, :image_content_type, :image_file_size, :image_updated_at
 
   belongs_to :book
 

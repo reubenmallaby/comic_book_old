@@ -10,6 +10,7 @@ class Manage::ComicsController < Manage::BaseController
 
   def new
     @comic = Comic.new
+    @comic.publish_date=Date.today
     @books = Book.available
   end
 
@@ -20,8 +21,6 @@ class Manage::ComicsController < Manage::BaseController
 
   def create
     @comic = Comic.new(params[:comic])
-    @comic.previous = Comic.before(@comic.publish_date).first
-    @comic.next = Comic.after(@comic.publish_date).first
     if @comic.save
       redirect_to manage_comics_url, notice: 'Comic was successfully created.'
     else
@@ -32,8 +31,6 @@ class Manage::ComicsController < Manage::BaseController
 
   def update
     @comic = Comic.find(params[:id])
-    @comic.previous = Comic.before(@comic.publish_date).first
-    @comic.next = Comic.after(@comic.publish_date).first
     if @comic.update_attributes(params[:comic])
       redirect_to manage_comics_url, notice: 'Comic was successfully updated.'
     else

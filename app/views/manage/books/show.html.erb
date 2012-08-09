@@ -5,23 +5,57 @@
 
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @serie.name %></dd>
+  <dd><%= @book.name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
-  <dd><%= @serie.description %></dd>
+  <dd><%= @book.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:comic_count) %>:</strong></dt>
-  <dd><%= @serie.comic_count %></dd>
+  <dd><%= @book.comic_count %></dd>
   <dt><strong><%= model_class.human_attribute_name(:available) %>:</strong></dt>
-  <dd><%= @serie.available %></dd>
+  <dd><%= @book.available %></dd>
 </dl>
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              serie_path, :class => 'btn'  %>
+              manage_books_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_serie_path(@serie), :class => 'btn' %>
+              edit_manage_book_path(@book), :class => 'btn btn-info ' %>
   <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              serie_path(@serie),
+              manage_book_path(@book),
               :method => 'delete',
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
 </div>
+<h2>Comics</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th><%= model_class.human_attribute_name(:name) %></th>
+    <th><%= model_class.human_attribute_name(:description) %></th>
+    <th><%= model_class.human_attribute_name(:publish_date) %></th>
+    <th><%= model_class.human_attribute_name(:sold) %></th>
+    <th><%= model_class.human_attribute_name(:image_file_name) %></th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @book.comics.each do |comic| %>
+    <tr>
+      <td><%= link_to comic.name, manage_comic_path(comic) %></td>
+      <td><%= comic.name %></td>
+      <td><%= comic.description %></td>
+      <td><%= comic.publish_date %></td>
+      <td><%= comic.sold %></td>
+      <td><%= image_tag comic.image.url(:thumb) %></td>
+      <td>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_manage_comic_path(comic), :class => 'btn btn-mini' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    manage_comic_path(comic),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-mini btn-danger' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -1,20 +1,14 @@
-<%= form_for @book, :html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for [:manage, @book], :html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :name, :class => 'text_field' %>
+      <%= f.text_field :name, :class => 'text_field span8' %>
     </div>
   </div>
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :description, :class => 'text_area' %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :comic_count, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.number_field :comic_count, :class => 'number_field' %>
+      <%= f.text_area :description, :class => 'text_area span8', :rows => 4 %>
     </div>
   </div>
   <div class="control-group">

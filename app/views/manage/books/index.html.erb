@@ -5,7 +5,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:comic_count) %></th>
@@ -17,8 +16,7 @@
   <tbody>
     <% @books.each do |book| %>
       <tr>
-        <td><%= link_to book.id, book_path(book) %></td>
-        <td><%= book.name %></td>
+        <td><%= link_to book.name, manage_book_path(book) %></td>
         <td><%= book.description %></td>
         <td><%= book.comic_count %></td>
         <td><%= book.available %></td>

@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:series_id) %></th>
+      <th><%= model_class.human_attribute_name(:book_id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
       <th><%= model_class.human_attribute_name(:publish_date) %></th>
@@ -19,7 +19,7 @@
     <% @comics.each do |comic| %>
       <tr>
         <td><%= link_to comic.id, manage_comic_path(comic) %></td>
-        <td><%= comic.series_id %></td>
+        <td><%= comic.book.name if comic.book %></td>
         <td><%= comic.name %></td>
         <td><%= comic.description %></td>
         <td><%= comic.publish_date %></td>

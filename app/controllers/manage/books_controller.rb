@@ -1,7 +1,7 @@
 class Manage::BooksController < Manage::BaseController
 
   def index
-    @book = Book.all
+    @books = Book.all
   end
 
   def show
@@ -19,7 +19,7 @@ class Manage::BooksController < Manage::BaseController
   def create
     @book = Book.new(params[:books])
     if @book.save
-      redirect_to [:manage, @book], notice: 'Series was successfully created.'
+      redirect_to [:manage, @book], notice: 'Book was successfully created.'
     else
       render action: "new"
     end
@@ -28,7 +28,7 @@ class Manage::BooksController < Manage::BaseController
   def update
     @book = Book.find(params[:id])
     if @book.update_attributes(params[:books])
-      redirect_to [:manage, @book], notice: 'Series was successfully updated.'
+      redirect_to [:manage, @book], notice: 'Book was successfully updated.'
     else
       render action: "edit"
     end
@@ -37,6 +37,6 @@ class Manage::BooksController < Manage::BaseController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to manage_series_url
+    redirect_to manage_books_url
   end
 end

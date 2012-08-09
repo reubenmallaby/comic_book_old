@@ -35,24 +35,6 @@ class Comic < ActiveRecord::Base
     Comic.after(self.publish_date).oldest.first
   end
 
-  #def previous
-  #  return nil if self.previous_id.nil?
-  #  Comic.find self.previous_id
-  #end
-  #
-  #def previous=id
-  #  self.previous_id=id
-  #end
-  #
-  #def next
-  #  return nil if self.next_id.nil?
-  #  Comic.find self.next_id
-  #end
-  #
-  #def next=id
-  #  self.next_id=id
-  #end
-
   private
 
   def increment_book

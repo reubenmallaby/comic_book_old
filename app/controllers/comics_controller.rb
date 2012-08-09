@@ -35,10 +35,12 @@ class ComicsController < ApplicationController
   end
 
   def get_calendar
-    if @comic
-      @date ||= @comic.publish_date
-    else
-      @date = Date.today
+    unless @date
+      if @comic
+        @date = @comic.publish_date
+      else
+        @date = Date.today
+      end
     end
     @comics_for_month = {}
     Comic.for_month(Date.new(@date.year, @date.month)).each do |c|

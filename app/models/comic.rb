@@ -11,7 +11,9 @@ class Comic < ActiveRecord::Base
 
   has_attached_file :image,
                     :styles => { :original => "800x600>", :thumb => "100x100>" },
-                    :url => '/comics/:id/:style/:filename'
+                    :url => '/comics/:id/:style/:filename',
+                    :default_url => "/assets/none.png"
+
 
   validates_presence_of :name, :image
   validates_uniqueness_of :name, :publish_date

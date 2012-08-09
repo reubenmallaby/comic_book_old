@@ -17,7 +17,7 @@ class Manage::BooksController < Manage::BaseController
   end
 
   def create
-    @book = Book.new(params[:books])
+    @book = Book.new(params[:book])
     if @book.save
       redirect_to [:manage, @book], notice: 'Book was successfully created.'
     else
@@ -27,7 +27,7 @@ class Manage::BooksController < Manage::BaseController
 
   def update
     @book = Book.find(params[:id])
-    if @book.update_attributes(params[:books])
+    if @book.update_attributes(params[:book])
       redirect_to [:manage, @book], notice: 'Book was successfully updated.'
     else
       render action: "edit"

@@ -1,4 +1,5 @@
 <%= form_for [:manage, @book], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= render :partial => "shared/errors", :locals => { :obj => @book } %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">

@@ -1,8 +1,9 @@
 <%= form_for [:manage, @comic], :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
+  <%= render :partial => "shared/errors", :locals => { :obj => @comic } %>
   <div class="control-group">
     <%= f.label :book_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.select :book_id, @books.map {|b| [b.name, b.id] }, :class => 'number_field' %>
+      <%= f.select :book_id, @books.map {|b| [b.name, b.id] }, {:include_blank => true}, :class => 'number_field' %>
     </div>
   </div>
   <div class="control-group">

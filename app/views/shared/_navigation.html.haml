@@ -1,6 +1,6 @@
 = link_to "ComicBookApp", root_path, :class => 'brand'
 %ul.nav
-  %li= link_to "Archive", comics_path
+  %li= link_to "Archive", archive_path
   - if signed_in? and current_user.admin
     %li.dropdown
       %a.dropdown-toggle{:href => "#", :"data-toggle" => "dropdown"}

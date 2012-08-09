@@ -8,6 +8,10 @@ class ComicsController < ApplicationController
     get_calendar
   end
 
+  def archive
+    @comics = Comic.latest
+  end
+
   def show
     if params[:id]
       @comic = Comic.find(params[:id])

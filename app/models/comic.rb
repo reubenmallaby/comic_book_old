@@ -1,12 +1,15 @@
 class Comic < ActiveRecord::Base
 
-  attr_accessible :description, :name, :publish_date, :series_id, :image, :sold, :image_file_name, :image_content_type, :image_file_size, :image_updated_at
+  attr_accessible :description, :name, :publish_date, :series_id, :image, :sold, :image_file_name, :image_content_type, :image_file_size, :image_updated_at, :book_id
 
   belongs_to :book
 
   has_attached_file :image,
                     :styles => { :original => "800x600>", :thumb => "100x100>" },
                     :url => '/comics/:id/:style/:filename'
+
+  validates_presence_of :name, :image
+  validates_uniqueness_of :name, :publish_date
 
   has_many :comments
 

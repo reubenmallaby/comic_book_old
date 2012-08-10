@@ -2,7 +2,7 @@ ComicBook::Application.routes.draw do
 
   get 'profile',      :to => 'users#show',    :as => 'profile'
   get 'profile/edit', :to => 'users#edit',    :as => 'edit_profile'
-  post 'profile',     :to => 'users#update',  :as => 'update_profile'
+  put 'profile',     :to => 'users#update',  :as => 'update_profile'
 
   get '/comic/:year/:month/:day', :to => 'comics#show_by_day', :as => 'archived'
 

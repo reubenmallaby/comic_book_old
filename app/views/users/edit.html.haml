@@ -1,0 +1,11 @@
+= form_for current_user, :url => update_profile_path do |f|
+  = render :partial => "shared/errors", :locals => { :obj => current_user }
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls= f.text_field :name, :class => "span6"
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls= f.text_field :email, :class => "span6"
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), profile_path, :class => 'btn btn-danger'

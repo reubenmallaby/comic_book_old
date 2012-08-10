@@ -7,9 +7,11 @@
   .span2= render :partial => "shared/social"
   .span8.comic= @comic ? image_tag(@comic.image.url(:original), :title => @comic.name) : image_tag("none.png", :title => "No comic found")
   .span2= render :partial => "calendar", :locals => { :date => @date }
+%br
 .row
   .span4 &nbsp;
-  .span4= @comic.blank? ? "No comic found" : @comic.description
+  .span4
+    %i= @comic.blank? ? "No comic found" : @comic.description
   .span4 &nbsp;
 %br
 .row

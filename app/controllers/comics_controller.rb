@@ -9,7 +9,7 @@ class ComicsController < ApplicationController
   end
 
   def archive
-    @comics = Comic.all
+    @comics = Comic.group(&:"YEAR(publish_date)").group(&:"MONTH(publish_date)").order("publish_date asc")
   end
 
   def show

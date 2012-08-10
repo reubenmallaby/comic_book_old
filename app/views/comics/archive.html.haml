@@ -3,8 +3,20 @@
 
 .row
   .span2 &nbsp;
-  .span6
-    %ul.unstyled
-      - @comics.each do |comic|
-        %li= link_to "#{l comic.publish_date, :format => :short} #{comic.name}", comic
-
+  .span8.indented
+    - comics_by_year = @comics.group_by { |c| c.publish_date.year }
+    - comics_by_year.each do |year, comics|
+      .row
+        .well.label-info.label
+          %h2=year
+        %ul.unstyled.indented.span7
+          - comics_by_month = comics.group_by { |y| y.publish_date.month }
+          - comics_by_month.each do |month, comics|
+            %li
+              .row
+                .well= link_to t("date.month_names")[month], archived_path(year, month, comics.first.publish_date.day)
+                %ul.unstyled.span6.indented
+                  - comics.each do |c|
+                    %li= link_to "#{c.publish_date.day.ordinalize} :: #{c.name}", archived_path(year, month, c.publish_date.day)
+            %br
+      %br

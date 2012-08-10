@@ -39,7 +39,7 @@
     .span8
       %h2 Comments
       - if signed_in?
-        = form_for [@comic, Comment.new], :remote => true do |f|
+        = form_for Comment.new, :url => comment_path(:parent_type => 'Comic', :parent_id => @comic.id), :remote => true do |f|
           = f.text_area :message, :class => "span8", :rows => 4
           %br
           = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary"

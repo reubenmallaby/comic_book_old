@@ -2,11 +2,6 @@ class Comic < ActiveRecord::Base
 
   attr_accessible :description, :name, :publish_date, :series_id, :image, :sold, :book_id
 
-  #attr_accessor :image_file_name
-  #attr_accessor :image_content_type
-  #attr_accessor :image_file_size
-  #attr_accessor :image_updated_at
-
   belongs_to :book
 
   has_attached_file :image,
@@ -18,7 +13,7 @@ class Comic < ActiveRecord::Base
   validates_presence_of :name, :image
   validates_uniqueness_of :name, :publish_date
 
-  has_many :comments
+  has_many :comments, :as => :commentable
 
   after_create :increment_book
 

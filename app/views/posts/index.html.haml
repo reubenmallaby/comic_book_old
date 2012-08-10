@@ -1,0 +1,10 @@
+%h1 My Blog
+%br
+= will_paginate @posts
+%br
+- @posts.each do |post|
+  .well
+    .pull-right= "Posted #{time_ago_in_words(post.created_at)} ago"
+    %h2= link_to post.title, post
+    %p= truncate post.content, :length => 320
+%br

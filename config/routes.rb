@@ -8,18 +8,21 @@ ComicBook::Application.routes.draw do
 
   get '/archive', :to => 'comics#archive', :as => 'archive'
 
+  match '/comments/:parent_type/:parent_id', :to => 'comments#create', :as => 'comment'
+
+  resources :posts, :only => [:index, :show]
   resources :comics, :only => [:index, :show] do
-    resource :comments, :only => :create
+
   end
   resources :books, :only => [:index, :show] do
     resources :comics, :only => [:index, :show]
   end
 
-
   namespace :manage do
     resources :books
     resources :comics
     resources :users
+    resources :posts
   end
 
   root :to => 'comics#show'

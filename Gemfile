@@ -29,3 +29,4 @@ gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootst
 #gem 'newrelic_rpm'
 
 gem 'clearance'
+gem 'bootstrap-will_paginate'

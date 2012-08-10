@@ -1,0 +1,11 @@
+= form_for [:manage, @post] do |f|
+  = render :partial => "shared/errors", :locals => { :obj => @post }
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls= f.text_field :title, :class => "span12"
+  .control-group
+    = f.label :content, :class => 'control-label'
+    .controls= f.text_area :content, :rows => 16, :class => "span12"
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), manage_comics_path, :class => 'btn btn-danger'

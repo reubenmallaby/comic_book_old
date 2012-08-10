@@ -2,6 +2,7 @@
   .row
     .span2 &nbsp;
     .span8.control-group
+      %h2= "#{pluralize(obj.errors.count, "error")} prohibited this post from being saved:"
       %ul.well.btn-danger.unstyled
         - obj.errors.full_messages.each do |msg|
           %li= msg

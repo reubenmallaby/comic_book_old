@@ -1,0 +1,22 @@
+%h1.well= @post.title
+.row
+  .span8
+    .pull-right= "Posted #{time_ago_in_words(@post.created_at)} ago"
+    = @post.content
+    %br
+    %br
+    .row
+      .span8
+        .well Comments
+    - if signed_in?
+      .row
+        .span8
+          = form_for Comment.new, :url => comment_path(:parent_type => 'Post', :parent_id => @post.id), :remote => true do |f|
+            = f.text_area :message, :class => "span8", :rows => 4
+            %br
+            = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary"
+    .row
+      .span8
+        #comments= render @post.comments.reversed
+  .span4
+    .well &nbsp;

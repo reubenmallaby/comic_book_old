@@ -5,12 +5,13 @@ ComicBook::Application.routes.draw do
   put 'profile',      :to => 'users#update',  :as => 'update_profile'
 
   get '/comic/:year/:month/:day', :to => 'comics#show_by_day', :as => 'archived'
+  get '/blog/:year/:month/:day', :to => 'posts#show_by_day', :as => 'archived_blog'
 
   get '/archive', :to => 'comics#archive', :as => 'archive'
 
   post '/comments/:parent_type/:parent_id', :to => 'comments#create', :as => 'comment'
 
-  resources :posts, :only => [:index, :show]
+  resources :posts, :only => [:index, :show], :path => 'blog'
   resources :comics, :only => [:index, :show]
 
   resources :books, :only => [:index, :show] do

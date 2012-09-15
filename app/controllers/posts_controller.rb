@@ -17,4 +17,12 @@ class PostsController < ApplicationController
       format.rss
     end
   end
+
+  def show_by_day
+    @date = Date.parse "#{params[:day]}-#{params[:month]}-#{params[:year]}"
+    @post = Post.where(:created_at => @date).first
+
+    redirect_to posts_url unless @post
+  end
+
 end

@@ -15,6 +15,8 @@ class Comic < ActiveRecord::Base
 
   has_many :comments, :as => :commentable
 
+  belongs_to :book
+
   after_create :increment_book
 
   scope :reversed, order("publish_date DESC")

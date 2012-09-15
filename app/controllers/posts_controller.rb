@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
   def show_by_day
     @date = Date.parse "#{params[:day]}-#{params[:month]}-#{params[:year]}"
-    @post = Post.where(:created_at => @date).first
+    @post = Post.where(["created_at >= ? AND created_at <= ?", @date.beginning_of_day, @date.end_of_day]).first
 
     redirect_to posts_url unless @post
   end

@@ -2,3 +2,8 @@
 %ul.unstyled.well
   %li= link_to "Share on Facebook", "http://www.facebook.com/sharer.php?u=#{request.original_url}"
   %li= link_to "Share on Twitter", "http://twitter.com/share?url=#{request.original_url}"
+  %li
+    %br
+  - if @comic
+    %li
+      .fb-like{ :"data-href" => archived_url(@comic.year, @comic.month, @comic.day), :"data-send" => "false", :"data-layout" => "box_count", :"data-width" => "450", :"data-show-faces" => "false", :"data-font" => "arial"}

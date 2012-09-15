@@ -1,6 +1,6 @@
 <%= form_for [:manage, @comic], :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <%= render :partial => "shared/errors", :locals => { :obj => @comic } %>
-  <% if Settings.uses.blog -%>
+  <% if Settings.uses_books -%>
     <div class="control-group">
       <%= f.label :book_id, :class => 'control-label' %>
       <div class="controls">

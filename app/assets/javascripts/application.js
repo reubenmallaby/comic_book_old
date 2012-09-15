@@ -26,4 +26,7 @@ $(document).ready(function(){
   });
 
 
+  $('#_manage_settings_uses_facebook').change(function() { $('#settings_facebook').toggle('slow'); });
+  $('#_manage_settings_uses_twitter').change(function() { $('#settings_twitter').toggle('slow'); });
+
 });

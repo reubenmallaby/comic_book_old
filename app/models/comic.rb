@@ -2,7 +2,7 @@ class Comic < ActiveRecord::Base
 
   attr_accessible :description, :name, :publish_date, :series_id, :image, :sold, :book_id
 
-  belongs_to :book
+  belongs_to :chapter
 
   has_attached_file :image,
                     :styles => { :original => "800x600>", :thumb => "100x100>" },

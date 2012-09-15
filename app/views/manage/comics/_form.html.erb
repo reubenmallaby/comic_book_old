@@ -1,11 +1,13 @@
 <%= form_for [:manage, @comic], :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <%= render :partial => "shared/errors", :locals => { :obj => @comic } %>
-  <div class="control-group">
-    <%= f.label :book_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.select :book_id, @books.map {|b| [b.name, b.id] }, {:include_blank => true}, :class => 'number_field' %>
+  <% if Settings.uses.blog -%>
+    <div class="control-group">
+      <%= f.label :book_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.select :book_id, @books.map {|b| [b.name, b.id] }, {:include_blank => true}, :class => 'number_field' %>
+      </div>
     </div>
-  </div>
+  <% end -%>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">
@@ -24,12 +26,14 @@
       <%= f.text_field :publish_date, :class => 'date datepicker', :"data-date-format" => "yyyy-mm-dd" %>
     </div>
   </div>
-  <div class="control-group">
-    <%= f.label :sold, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.check_box :sold, :class => 'check_box' %>
+  <% unless @comic.new_record? -%>
+    <div class="control-group">
+      <%= f.label :sold, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :sold, :class => 'check_box' %>
+      </div>
     </div>
-  </div>
+  <% end -%>
   <div class="control-group">
     <%= f.label :image, :class => 'control-label' %>
     <div class="controls">

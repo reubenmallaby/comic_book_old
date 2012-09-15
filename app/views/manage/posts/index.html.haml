@@ -1,21 +1,27 @@
 %h1 Listing posts
 
-%table
-  %tr
-    %th Title
-    %th Content
-    %th
-    %th
-    %th
-
-  - @posts.each do |post|
-    %tr
-      %td= post.title
-      %td= post.content
-      %td= link_to 'Show', [:manage, post]
-      %td= link_to 'Edit', edit_manage_post_path(post)
-      %td= link_to 'Destroy', [:manage, post], :confirm => 'Are you sure?', :method => :delete
-
+%br
+= link_to 'New Post', new_manage_post_path, :class => "icon-plus"
+%br
 %br
 
-= link_to 'New Post', new_manage_post_path
+.rounded
+  %table.full
+    %tr
+      %th Title
+      %th Comments
+      %th
+      %th
+      %th
+
+    - @posts.each do |post|
+      %tr
+        %td= post.title
+        %td= post.comments.count
+        %td= link_to 'Show', [:manage, post]
+        %td= link_to 'Edit', edit_manage_post_path(post)
+        %td= link_to 'Destroy', [:manage, post], :confirm => 'Are you sure?', :method => :delete
+%br
+%br
+= link_to 'New Post', new_manage_post_path, :class => "icon-plus"
+%br

@@ -3,7 +3,8 @@ class Book < ActiveRecord::Base
 
   validates_presence_of :name
 
-  has_many :comics
+  has_many :chapters
+  has_many :comics, :through => :chapters
 
   scope :available, where(:available => true)
 

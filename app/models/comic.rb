@@ -43,7 +43,7 @@ class Comic < ActiveRecord::Base
   private
 
   def increment_book
-    unless self.book.blank?
+    unless !Settings.uses_books && self.book_id.blank?
       self.book.increment_counter
     end
   end

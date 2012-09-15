@@ -23,11 +23,11 @@ class Manage::ComicsController < Manage::BaseController
     @comic = Comic.new(params[:comic])
     if @comic.save
 
-      if Settings.uses.facebook
+      if Settings.uses_facebook
         #post
       end
 
-      if Settings.uses.twitter
+      if Settings.uses_twitter
         #post
       end
 

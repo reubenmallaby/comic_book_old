@@ -1,6 +1,6 @@
 .page-header
   %h1
-    = "#{@comic.book.name} :: " if @comic && @comic.book
+    = "#{@comic.book.name} :: " if Settings.uses_books && @comic && @comic.book
     = @comic.name if @comic
 
 .row

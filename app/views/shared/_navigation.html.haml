@@ -27,6 +27,13 @@
         %ul.dropdown-menu
           %li= link_to content_tag(:i, " ", :class => "icon-cog" ) + " Manage", manage_posts_path
           %li= link_to content_tag(:i, " ", :class => "icon-plus" ) + " New post", new_manage_post_path
+      %li.dropdown
+        %a.dropdown-toggle{:href => "#", :"data-toggle" => "dropdown"}
+          Tags
+          %b.caret
+        %ul.dropdown-menu
+          %li= link_to content_tag(:i, " ", :class => "icon-cog" ) + " Manage", manage_tags_path
+          %li= link_to content_tag(:i, " ", :class => "icon-plus" ) + " New tag", new_manage_tag_path
 %ul.nav.pull-right
   - if signed_in?
     %li.dropdown

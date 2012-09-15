@@ -17,6 +17,7 @@ class Comic < ActiveRecord::Base
 
   belongs_to :book
   has_many :taggings, :as => :tagged
+  has_many :tags, :through => :taggings
 
   after_create :increment_book
 

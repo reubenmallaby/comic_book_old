@@ -29,6 +29,7 @@ ComicBook::Application.routes.draw do
     resources :comics
     resources :users
     resources :posts
+    resources :tags
   end
 
   root :to => 'comics#show'

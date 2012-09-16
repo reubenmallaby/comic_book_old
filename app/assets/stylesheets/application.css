@@ -11,3 +11,22 @@
  *= require_self
  *= require_tree .
  */
+
+table.full {
+  width: 100%;
+}
+table.full th {
+  text-align: left;
+}
+.rounded {
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+table td.title {
+  width: 150px;
+}
+.cen {
+  text-align: center;
+}

@@ -2,7 +2,7 @@ class Comic < ActiveRecord::Base
 
   attr_accessible :description, :name, :publish_date, :series_id, :image, :sold, :book_id
 
-  belongs_to :book
+  belongs_to :chapter
 
   has_attached_file :image,
                     :styles => { :original => "800x600>", :thumb => "100x100>" },
@@ -14,6 +14,10 @@ class Comic < ActiveRecord::Base
   validates_uniqueness_of :name, :publish_date
 
   has_many :comments, :as => :commentable
+
+  belongs_to :book
+  has_many :taggings, :as => :tagged
+  has_many :tags, :through => :taggings
 
   after_create :increment_book
 
@@ -43,7 +47,7 @@ class Comic < ActiveRecord::Base
   private
 
   def increment_book
-    unless self.book.blank?
+    unless !Settings.uses_books && self.book_id.blank?
       self.book.increment_counter
     end
   end

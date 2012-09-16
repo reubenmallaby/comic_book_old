@@ -1,0 +1,51 @@
+%h2 Settings
+
+= form_for manage_settings_path, :html => { :class => "form-horizontal" } do |f|
+  %h3 Site
+  .control-group
+    = f.label :site_title, :class => "control-label"
+    .controls= text_field_tag :site_title, Settings.site_title, :class => 'input-xlarge'
+  .control-group
+    = f.label :site_title, :class => "control-label"
+    .controls= f.select :site_theme, @themes.map {|t| [t,t] }, :class => 'input-xlarge' #, Settings.site_theme
+  .control-group
+    = f.label :uses_blog, :class => "control-label"
+    .controls= check_box_tag :uses_blog, 1, Settings.uses_blog
+  .control-group
+    = f.label :uses_books, :class => "control-label"
+    .controls= check_box_tag :uses_books, 1, Settings.uses_books
+  .control-group
+    = f.label :uses_facebook, :class => "control-label"
+    .controls= check_box_tag :uses_facebook, 1, Settings.uses_facebook
+  .control-group
+    = f.label :uses_twitter, :class => "control-label"
+    .controls= check_box_tag :uses_twitter, 1, Settings.uses_twitter
+  %br
+
+
+  #settings_facebook{ :style => "display:#{(Settings.uses_facebook ? "block" : "none")}" }
+    %h3 Facebook
+    .control-group
+      = f.label :facebook_app_id, :class => "control-label"
+      .controls
+        = text_field_tag :facebook_app_id, Settings.facebook_app_id, :class => 'input-xlarge'
+    .control-group
+      = f.label :facebook_app_secret, :class => "control-label"
+      .controls= text_field_tag :facebook_app_secret, Settings.facebook_app_secret, :class => 'input-xlarge'
+    .control-group
+      = f.label :facebook_page, :class => "control-label"
+      .controls= text_field_tag :facebook_page, Settings.facebook_page, :class => 'input-xlarge'
+    %br
+
+  #settings_twitter{ :style => "display:#{(Settings.uses_twitter ? "block" : "none")}" }
+    %h3 Twitter
+    .control-group
+      = f.label :twitter_username, :class => "control-label"
+      .controls= text_field_tag :twitter_username, Settings.twitter_username, :class => 'input-xlarge'
+    .control-group
+      = f.label :twitter_password, :class => "control-label"
+      .controls= text_field_tag :twitter_password, Settings.twitter_password, :class => 'input-xlarge'
+    %br
+
+  .control-group
+    .controls= f.submit "Save settings", :class => "btn btn-large btn-primary"

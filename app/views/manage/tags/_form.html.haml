@@ -1,0 +1,7 @@
+= form_for [:manage, @tag], :html => { :class => "form-horizontal" } do |f|
+  = render :partial => "shared/errors", :locals => { :obj => @post }
+  .control-group
+    = f.label :name
+    .controls= f.text_field :name
+  .control-group
+    .controls= f.submit "Save changes", :class => 'btn btn-primary btn-large'

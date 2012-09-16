@@ -22,6 +22,15 @@ class Manage::ComicsController < Manage::BaseController
   def create
     @comic = Comic.new(params[:comic])
     if @comic.save
+
+      if Settings.uses_facebook
+        #post
+      end
+
+      if Settings.uses_twitter
+        #post
+      end
+
       redirect_to manage_comics_url, notice: 'Comic was successfully created.'
     else
       @books = Book.available

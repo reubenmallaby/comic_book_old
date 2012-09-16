@@ -4,7 +4,7 @@
     %meta{:charset => "utf-8"}
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
-    %title= content_for?(:title) ? yield(:title) : "ComicBookApp"
+    %title= content_for?(:title) ? yield(:title) : Settings.site_title
     %meta{:content => "", :name => "description"}
     %meta{:content => "", :name => "author"}
     = stylesheet_link_tag    "application", :media => "all"
@@ -13,11 +13,6 @@
     = yield(:head)
   %body
     #fb-root
-    :javascript
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
     %header.navbar.navbar-fixed-top
       %nav.navbar-inner
         .container= render 'shared/navigation'
@@ -37,3 +32,11 @@
             = link_to 'Reuben Mallaby', 'http://reuben.mallaby.me'
             2012
           .span4 &nbsp;
+    :javascript
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=#{Settings.facebook_app_id}";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));

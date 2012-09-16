@@ -15,6 +15,8 @@
 //= require twitter/bootstrap
 //= require_tree .
 
+
+
 $(document).ready(function(){
   $("a[rel=popover]").popover();
   $(".tooltip").tooltip();
@@ -25,5 +27,8 @@ $(document).ready(function(){
     $('.prettyfile').val($(this).val());
   });
 
+
+  $('#_manage_settings_uses_facebook').change(function() { $('#settings_facebook').toggle('slow'); });
+  $('#_manage_settings_uses_twitter').change(function() { $('#settings_twitter').toggle('slow'); });
 
 });

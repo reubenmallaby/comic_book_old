@@ -1,21 +1,24 @@
 %h1 Listing posts
 
-%table
+%br
+= link_to 'New Post', new_manage_post_path, :class => "icon-plus"
+%br
+%br
+
+%table.full.table.table-striped
   %tr
     %th Title
-    %th Content
-    %th
-    %th
-    %th
-
+    %th Comments
+    %th=t '.actions', :default => t("helpers.actions")
   - @posts.each do |post|
     %tr
       %td= post.title
-      %td= post.content
-      %td= link_to 'Show', [:manage, post]
-      %td= link_to 'Edit', edit_manage_post_path(post)
-      %td= link_to 'Destroy', [:manage, post], :confirm => 'Are you sure?', :method => :delete
-
+      %td= post.comments.count
+      %td
+        = link_to 'Show', [:manage, post], :class => 'btn btn-mini'
+        = link_to 'Edit', edit_manage_post_path(post), :class => 'btn btn-mini btn-info'
+        = link_to 'Destroy', [:manage, post], :confirm => 'Are you sure?', :method => :delete, :class => 'btn btn-mini btn-danger'
 %br
-
-= link_to 'New Post', new_manage_post_path
+%br
+= link_to 'New Post', new_manage_post_path, :class => "icon-plus"
+%br

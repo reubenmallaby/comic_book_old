@@ -2,41 +2,37 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
-<table class="table table-striped">
-  <thead>
+<table class="full table table-striped">
+  <tr>
+    <th><%= model_class.human_attribute_name(:id) %></th>
+    <th><%= model_class.human_attribute_name(:book_id) %></th>
+    <th><%= model_class.human_attribute_name(:name) %></th>
+    <th><%= model_class.human_attribute_name(:description) %></th>
+    <th><%= model_class.human_attribute_name(:publish_date) %></th>
+    <th><%= model_class.human_attribute_name(:sold) %></th>
+    <th><%= model_class.human_attribute_name(:image) %></th>
+    <th><%=t '.actions', :default => t("helpers.actions") %></th>
+  </tr>
+  <% @comics.each do |comic| %>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:book_id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:publish_date) %></th>
-      <th><%= model_class.human_attribute_name(:sold) %></th>
-      <th><%= model_class.human_attribute_name(:image_file_name) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <td><%= link_to comic.id, manage_comic_path(comic) %></td>
+      <td><%= comic.book.name if comic.book %></td>
+      <td><%= comic.name %></td>
+      <td><%= comic.description %></td>
+      <td><%= comic.publish_date %></td>
+      <td><%= comic.sold ? "Yes" : "No" %></td>
+      <td><%= image_tag comic.image.url(:thumb) %></td>
+      <td>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                    edit_manage_comic_path(comic), :class => 'btn btn-mini btn-info' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                    manage_comic_path(comic),
+                    :method => :delete,
+                    :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                    :class => 'btn btn-mini btn-danger' %>
+      </td>
     </tr>
-  </thead>
-  <tbody>
-    <% @comics.each do |comic| %>
-      <tr>
-        <td><%= link_to comic.id, manage_comic_path(comic) %></td>
-        <td><%= comic.book.name if comic.book %></td>
-        <td><%= comic.name %></td>
-        <td><%= comic.description %></td>
-        <td><%= comic.publish_date %></td>
-        <td><%= comic.sold %></td>
-        <td><%= image_tag comic.image.url(:thumb) %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_manage_comic_path(comic), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      manage_comic_path(comic),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% end %>
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),

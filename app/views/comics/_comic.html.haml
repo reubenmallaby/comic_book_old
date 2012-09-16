@@ -1,16 +1,18 @@
 .page-header
   %h1
-    = "#{@comic.book.name} :: " if @comic && @comic.book
+    = "#{@comic.book.name} :: " if Settings.uses_books && @comic && @comic.book
     = @comic.name if @comic
 
 .row
   .span2= render :partial => "shared/social"
   .span8.comic= @comic ? image_tag(@comic.image.url(:original), :title => @comic.name) : image_tag("none.png", :title => "No comic found")
-  .span2= render :partial => "calendar", :locals => { :date => @date }
+  .span2
+    = render :partial => "calendar", :locals => { :date => @date }
+    = render :partial => "tags", :locals => { :tags => @comic.tags }
 %br
 .row
   .span4 &nbsp;
-  .span4
+  .span4.cen
     %i= @comic.blank? ? "No comic found" : @comic.description
   .span4 &nbsp;
 %br

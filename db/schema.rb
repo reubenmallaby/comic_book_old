@@ -73,10 +73,9 @@ ActiveRecord::Schema.define(:version => 20120915174039) do
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
-    t.integer  "tagged_id"
-    t.string   "tagged_type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "comic_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tags", :force => true do |t|

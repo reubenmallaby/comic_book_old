@@ -8,7 +8,7 @@
   .span8.comic= @comic ? image_tag(@comic.image.url(:original), :title => @comic.name) : image_tag("none.png", :title => "No comic found")
   .span2
     = render :partial => "calendar", :locals => { :date => @date }
-    = render :partial => "tags", :locals => { :tags => @comic.tags }
+    = render :partial => "tags", :locals => { :tags => @comic.tags } if @comic
 %br
 .row
   .span4 &nbsp;

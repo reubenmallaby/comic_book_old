@@ -12,6 +12,12 @@ class ComicsController < ApplicationController
     @comics = Comic.group(&:"YEAR(publish_date)").group(&:"MONTH(publish_date)").order("publish_date asc")
   end
 
+  def tagged
+    @tag = Tag.find_by_name params[:tag]
+    redirect_to root_url unless @tag
+    @comics = @tag.comics.group(&:"YEAR(publish_date)").group(&:"MONTH(publish_date)").order("publish_date asc")
+  end
+
   def show
     if params[:id]
       @comic = Comic.find(params[:id])

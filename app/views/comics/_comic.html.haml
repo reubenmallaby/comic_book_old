@@ -4,7 +4,9 @@
     = @comic.name if @comic
 
 .row
-  .span2= render :partial => "shared/social"
+  .span2
+    = render :partial => "shared/social"
+    = render :partial => "shared/ads"
   .span8.comic= @comic ? image_tag(@comic.image.url(:original), :title => @comic.name) : image_tag("none.png", :title => "No comic found")
   .span2
     = render :partial => "calendar", :locals => { :date => @date }

@@ -20,6 +20,9 @@
   .control-group
     = f.label :uses_twitter, :class => "control-label"
     .controls= check_box_tag :uses_twitter, 1, Settings.uses_twitter
+  .control-group
+    = f.label :uses_ads, :class => "control-label"
+    .controls= check_box_tag :uses_ads, 1, Settings.uses_ads
   %br
 
 
@@ -45,6 +48,13 @@
     .control-group
       = f.label :twitter_password, :class => "control-label"
       .controls= text_field_tag :twitter_password, Settings.twitter_password, :class => 'input-xlarge'
+    %br
+
+  #settings_ads{ :style => "display:#{(Settings.uses_ads ? "block" : "none")}" }
+    %h3 Ads by Google
+    .control-group
+      = f.label :ads_code, :class => "control-label"
+      .controls= text_field_tag :ads_code, Settings.ads_code, :class => 'input-xlarge'
     %br
 
   .control-group

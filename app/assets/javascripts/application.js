@@ -37,7 +37,8 @@ $(document).ready(function(){
     $('.prettyfile').val($(this).val());
   });
 
-  $('#_manage_settings_uses_facebook').change(function() { $('#settings_facebook').toggle('slow'); });
-  $('#_manage_settings_uses_twitter').change(function() { $('#settings_twitter').toggle('slow'); });
+  $('#uses_facebook').change(function() { $('#settings_facebook').toggle('slow'); });
+  $('#uses_twitter').change(function() { $('#settings_twitter').toggle('slow'); });
+  $('#uses_ads').change(function() { $('#settings_ads').toggle('slow'); });
 
 });

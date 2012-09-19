@@ -5,8 +5,15 @@
     %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}
     %title= content_for?(:title) ? yield(:title) : Settings.site_title
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "author"}
+    %meta{:content => "Web Comic Application in Ruby on Rails", :name => "description"}
+    %meta{:content => "Reuben Mallaby, reuben@mallaby.me", :name => "author"}
+
+    - if @comic
+      %meta{ :property => "og:image", :content => "http://comicbook.mallaby.me" + @comic.image.url(:original) }
+      %meta{ :property => "og:image:type", :content => @comic.image.content_type }
+      %meta{ :property => "og:image:width", :content => "800" }
+      %meta{ :property => "og:image:height", :content => "600" }
+
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags

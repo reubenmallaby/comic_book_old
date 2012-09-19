@@ -20,3 +20,4 @@ gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootst
 gem 'clearance'
 gem 'bootstrap-will_paginate'
 gem 'ledermann-rails-settings', :require => 'rails-settings'
+gem "fbgraph"

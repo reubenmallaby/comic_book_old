@@ -6,7 +6,7 @@ class BooksController < ApplicationController
     @book = Book.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html # index.html.haml
       format.json { render json: @book }
     end
   end
@@ -17,7 +17,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # show.html.haml
       format.json { render json: @book }
     end
   end

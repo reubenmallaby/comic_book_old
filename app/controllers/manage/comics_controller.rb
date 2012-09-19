@@ -30,6 +30,9 @@ class Manage::ComicsController < Manage::BaseController
 
       if Settings.uses_facebook
         #post
+        client = FBGraph::Client.new(:client_id => 'client_id', :secret_id =>'secret_id')
+
+
       end
 
       if Settings.uses_twitter

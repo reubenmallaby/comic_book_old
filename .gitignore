@@ -15,7 +15,12 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 /.idea
-
+db/schema.rb.old
+p.sh
+public/assets/*
+update.sh
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
+db/schema.rb
+

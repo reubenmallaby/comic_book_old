@@ -11,11 +11,21 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
 
+function tag_add(id, name) {
+  $('#tags').val($('#tags').val() + ',' + id);
+  $('#used_tags').append('<a class="btn" id="tagged_"' + id + '">' + name + '</a>');
+  $('#tag_' + id).hide();
+}
 
+function tag_drop(id, name) {
+  $('#tags').val($('#tags').val() + ',' + id);
+  $('#tag_' + id).show();
+}
 
 $(document).ready(function(){
   $("a[rel=popover]").popover();
@@ -27,8 +37,9 @@ $(document).ready(function(){
     $('.prettyfile').val($(this).val());
   });
 
-
-  $('#_manage_settings_uses_facebook').change(function() { $('#settings_facebook').toggle('slow'); });
-  $('#_manage_settings_uses_twitter').change(function() { $('#settings_twitter').toggle('slow'); });
+  $('#uses_facebook').change(function() { $('#settings_facebook').toggle('slow'); });
+  $('#uses_twitter').change(function() { $('#settings_twitter').toggle('slow'); });
+  $('#uses_ads').change(function() { $('#settings_ads').toggle('slow'); });
+  $('#uses_ga').change(function() { $('#settings_ga').toggle('slow'); });
 
 });

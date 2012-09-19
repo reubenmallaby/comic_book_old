@@ -1,0 +1,50 @@
+= form_for [:manage, @comic], :html => { :class => 'form-horizontal', :multipart => true } do |f| 
+  = render :partial => "shared/errors", :locals => { :obj => @comic } 
+  - if Settings.uses_books
+    .control-group
+      = f.label :book_id, :class => 'control-label' 
+      .controls
+        = f.select :book_id, @books.map {|b| [b.name, b.id] }, {:include_blank => true}, :class => 'number_field' 
+  .control-group
+    = f.label :name, :class => 'control-label' 
+    .controls
+      = f.text_field :name, :class => 'text_field span6' 
+  .control-group
+    = f.label :description, :class => 'control-label' 
+    .controls
+      = f.text_field :description, :class => 'text_field span6' 
+  .control-group
+    = f.label :publish_date, :class => 'control-label' 
+    .controls
+      = f.text_field :publish_date, :class => 'date datepicker', :"data-date-format" => "yyyy-mm-dd" 
+  - unless @comic.new_record?
+    .control-group
+      = f.label :sold, :class => 'control-label' 
+      .controls
+        = f.check_box :sold, :class => 'check_box' 
+  .control-group
+    = f.label :image, :class => 'control-label' 
+    .controls
+      = f.file_field :image, :style => 'display:none' 
+      .input-append
+        %input{ :type => "text", :class => "prettyfile input-large" }
+        %a.btn{ :onclick => "$('input[id=comic_image]').click();" } Browse
+  .control-group
+    = hidden_field_tag 'tags'
+    .controls
+      .well.span5
+        %h3 Tags
+        #used_tags
+          - @comic.tags.each do |tag|
+            %a.btn{ :id => "tag_#{tag.id}", :onclick => "tag_drop('#{tag.id}', '#{tag.name}');" }= tag.name
+      .well.span4
+        %h3 Available Tags
+        #available_tags
+          - @tags.each do |tag|
+            %a.btn{ :id => "tag_#{tag.id}", :onclick => "tag_add('#{tag.id}', '#{tag.name}');", :style => "display:#{( @comic.tags.include?(tag) ? "none" : "block" )}" }= tag.name
+        .spacer
+
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary' 
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), manage_comics_path, :class => 'btn btn-danger'

@@ -8,6 +8,7 @@ ComicBook::Application.routes.draw do
   get '/blog/:year/:month/:day', :to => 'posts#show_by_day', :as => 'archived_blog'
 
   get '/archive', :to => 'comics#archive', :as => 'archive'
+  get '/tagged/:tag', :to => 'comics#tagged', :as => 'tagged'
 
   post '/comments/:parent_type/:parent_id', :to => 'comments#create', :as => 'comment'
 

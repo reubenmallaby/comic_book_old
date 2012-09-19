@@ -30,3 +30,10 @@ table td.title {
 .cen {
   text-align: center;
 }
+#used_tags, #available_tags { list-style-type: none; margin: 0; padding: 0; margin-bottom: 10px; }
+#used_tags li, #available_tags li { margin: 5px; padding: 5px; width: 150px; }
+
+#ads_left {
+  width: 180px;
+  height: 250px;
+}

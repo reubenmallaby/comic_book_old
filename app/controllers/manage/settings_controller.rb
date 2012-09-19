@@ -14,6 +14,8 @@ class Manage::SettingsController < Manage::BaseController
     Settings.uses_blog = !params[:uses_blog].blank?
     Settings.uses_facebook = !params[:uses_facebook].blank?
     Settings.uses_twitter = !params[:uses_twitter].blank?
+    Settings.uses_ads = !params[:uses_ads].blank?
+    Settings.uses_ga = !params[:uses_ga].blank?
 
     Settings.facebook_app_id = params[:facebook_app_id]
     Settings.facebook_app_secret = params[:facebook_app_secret]
@@ -21,6 +23,9 @@ class Manage::SettingsController < Manage::BaseController
 
     Settings.twitter_username = params[:twitter_username]
     Settings.twitter_password = params[:twitter_password]
+
+    Settings.ads_code = params[:ads_code]
+    Settings.ga_id = params[:ga_id]
 
     Settings.save!
     Settings.reload!

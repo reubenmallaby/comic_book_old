@@ -1,3 +1,4 @@
-%ul
-  - tags.each do |tag|
-    %li= toag.name
+%br
+%h3 Tags
+- tags.each do |tag|
+  = link_to tag.name, tagged_path(tag.name), :class => "btn"

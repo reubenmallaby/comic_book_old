@@ -23,6 +23,9 @@
   .control-group
     = f.label :uses_ads, :class => "control-label"
     .controls= check_box_tag :uses_ads, 1, Settings.uses_ads
+  .control-group
+    = f.label :uses_ga, :class => "control-label"
+    .controls= check_box_tag :uses_ga, 1, Settings.uses_ga
   %br
 
 
@@ -55,6 +58,13 @@
     .control-group
       = f.label :ads_code, :class => "control-label"
       .controls= text_field_tag :ads_code, Settings.ads_code, :class => 'input-xlarge'
+    %br
+
+  #settings_ga{ :style => "display:#{(Settings.uses_ga ? "block" : "none")}" }
+    %h3 Google Analytics
+    .control-group
+      = f.label :ga_id, :class => "control-label"
+      .controls= text_field_tag :ga_id, Settings.ga_id, :class => 'input-xlarge'
     %br
 
   .control-group

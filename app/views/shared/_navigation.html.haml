@@ -4,9 +4,13 @@
     %li= link_to "Blog", posts_path
   %li= link_to "Archive", archive_path
 %ul.nav.pull-right
-  %li
-    %a Management
   - if signed_in? and current_user.admin
+    %li.dropdown
+      %a.dropdown-toggle.text-warning{:href => "#", :"data-toggle" => "dropdown"}
+        Management
+        %b.caret
+      %ul.dropdown-menu
+        %li= link_to content_tag(:i, " ", :class => "icon-cog" ) + " Settings", manage_settings_path
     %li.dropdown
       %a.dropdown-toggle{:href => "#", :"data-toggle" => "dropdown"}
         Comics
@@ -43,8 +47,6 @@
         = current_user.name
         %b.caret
       %ul.dropdown-menu
-        - if current_user.admin
-          %li= link_to content_tag(:i, " ", :class => "icon-cog" ) + " Settings", manage_settings_path
         %li= link_to content_tag(:i, " ", :class => "icon-user" ) + " View account", profile_path
         %li= link_to content_tag(:i, " ", :class => "icon-edit" ) + " Edit account", edit_profile_path
         %li= link_to content_tag(:i, " ", :class => "icon-off" ) + " Logout", sign_out_path, :method => :delete

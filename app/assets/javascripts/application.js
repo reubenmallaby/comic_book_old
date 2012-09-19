@@ -40,5 +40,6 @@ $(document).ready(function(){
   $('#uses_facebook').change(function() { $('#settings_facebook').toggle('slow'); });
   $('#uses_twitter').change(function() { $('#settings_twitter').toggle('slow'); });
   $('#uses_ads').change(function() { $('#settings_ads').toggle('slow'); });
+  $('#uses_ga').change(function() { $('#settings_ga').toggle('slow'); });
 
 });

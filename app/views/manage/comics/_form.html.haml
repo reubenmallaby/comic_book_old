@@ -41,7 +41,7 @@
         %h3 Available Tags
         #available_tags
           - @tags.each do |tag|
-            %a.btn{ :id => "tag_#{tag.id}", :onclick => "tag_add('#{tag.id}', '#{tag.name}');", :style => "display:#{( @comic.tags.include?(tag) ? "none" : "block" )}" }= tag.name
+            %a.btn{ :id => "tag_#{tag.id}", :onclick => "tag_add('#{tag.id}', '#{tag.name}');", :style => "display:#{( @comic.tags.include?(tag) ? "none" : "inline-block" )}" }= tag.name
         .spacer
 
 

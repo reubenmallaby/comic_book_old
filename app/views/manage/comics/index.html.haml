@@ -1,0 +1,26 @@
+- model_class = Comic
+.page-header
+  %h2=t '.title', :default => model_class.model_name.human.pluralize
+%table.full.table.table-striped
+  %tr
+    %th= model_class.human_attribute_name(:id) 
+    %th= model_class.human_attribute_name(:book_id) 
+    %th= model_class.human_attribute_name(:name) 
+    %th= model_class.human_attribute_name(:description) 
+    %th= model_class.human_attribute_name(:publish_date) 
+    %th= model_class.human_attribute_name(:sold) 
+    %th= model_class.human_attribute_name(:image) 
+    %th=t '.actions', :default => t("helpers.actions") 
+  - @comics.each do |comic| 
+    %tr
+      %td= link_to comic.id, manage_comic_path(comic) 
+      %td= comic.book.name if comic.book 
+      %td= comic.name 
+      %td= comic.description 
+      %td= comic.publish_date 
+      %td= comic.sold ? "Yes" : "No" 
+      %td= image_tag comic.image.url(:thumb) 
+      %td
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_manage_comic_path(comic), :class => 'btn btn-mini btn-info'
+        = link_to t('.destroy', :default => t("helpers.links.destroy")), manage_comic_path(comic), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+= link_to t('.new', :default => t("helpers.links.new")), new_manage_comic_path, :class => 'btn btn-primary'

@@ -17,9 +17,10 @@ class Manage::SettingsController < Manage::BaseController
     Settings.uses_ads = !params[:uses_ads].blank?
     Settings.uses_ga = !params[:uses_ga].blank?
 
+    Settings.facebook_page = params[:facebook_page]
     Settings.facebook_app_id = params[:facebook_app_id]
     Settings.facebook_app_secret = params[:facebook_app_secret]
-    Settings.facebook_page = params[:facebook_page]
+    Settings.facebook_page_id = params[:facebook_page_id]
     Settings.facebook_page_access_token = params[:facebook_page_access_token]
     Settings.facebook_access_token = params[:facebook_access_token]
 

@@ -18,6 +18,9 @@
     = f.label :uses_facebook, :class => "control-label"
     .controls= check_box_tag :uses_facebook, 1, Settings.uses_facebook
   .control-group
+    = f.label :facebook_page, :class => "control-label"
+    .controls= text_field_tag :facebook_page, Settings.facebook_page, :class => 'input-xlarge'
+  .control-group
     = f.label :uses_twitter, :class => "control-label"
     .controls= check_box_tag :uses_twitter, 1, Settings.uses_twitter
   .control-group
@@ -40,10 +43,10 @@
       .controls= text_field_tag :facebook_app_secret, Settings.facebook_app_secret, :class => 'input-xlarge'
     .control-group
       = f.label :facebook_page_access_token, :class => "control-label"
-      .controls= text_field_tag :facebook_page, Settings.facebook_page_access_token, :class => 'input-xlarge'
+      .controls= text_field_tag :facebook_page_access_token, Settings.facebook_page_access_token, :class => 'input-xlarge'
     .control-group
-      = f.label :facebook_page, :class => "control-label"
-      .controls= text_field_tag :facebook_page_access_token, Settings.facebook_page, :class => 'input-xlarge'
+      = f.label :facebook_page_id, :class => "control-label"
+      .controls= text_field_tag :facebook_page_id, Settings.facebook_page_id, :class => 'input-xlarge'
     .control-group
       = f.label :facebook_access_token, :class => "control-label"
       .controls= text_field_tag :facebook_access_token, Settings.facebook_access_token, :class => 'input-xlarge'

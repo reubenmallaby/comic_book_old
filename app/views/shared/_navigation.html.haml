@@ -3,6 +3,8 @@
   - if Settings.uses_blog
     %li= link_to "Blog", posts_path
   %li= link_to "Archive", archive_path
+  - if Settings.facebook_page
+    %li= link_to "Facebook", Settings.facebook_page
 %ul.nav.pull-right
   - if signed_in? and current_user.admin
     %li.dropdown

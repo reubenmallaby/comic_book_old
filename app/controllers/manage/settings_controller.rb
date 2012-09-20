@@ -20,6 +20,8 @@ class Manage::SettingsController < Manage::BaseController
     Settings.facebook_app_id = params[:facebook_app_id]
     Settings.facebook_app_secret = params[:facebook_app_secret]
     Settings.facebook_page = params[:facebook_page]
+    Settings.facebook_page_access_token = params[:facebook_page_access_token]
+    Settings.facebook_access_token = params[:facebook_access_token]
 
     Settings.twitter_username = params[:twitter_username]
     Settings.twitter_password = params[:twitter_password]

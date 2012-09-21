@@ -17,6 +17,10 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+
+    = auto_discovery_link_tag(:atom, comics_url(:format => :atom))
+    = auto_discovery_link_tag(:rss, comics_url(:format => :rss))
+
     = yield(:head)
   %body
     #fb-root

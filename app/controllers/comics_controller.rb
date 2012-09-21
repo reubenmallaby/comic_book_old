@@ -5,7 +5,14 @@ class ComicsController < ApplicationController
   def index
     @comics = Comic.latest.limit(10)
     @comic = Comic.latest.first
-    get_calendar
+
+    respond_to do |format|
+      format.html do
+        get_calendar
+      end
+      format.rss  { render :layout => false }
+      format.atom { render :layout => false }
+    end
   end
 
   def archive

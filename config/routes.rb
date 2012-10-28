@@ -1,5 +1,7 @@
 ComicBook::Application.routes.draw do
 
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :registration => 'register', :sign_up => 'signup' }
+
   get 'profile',      :to => 'users#show',    :as => 'profile'
   get 'profile/edit', :to => 'users#edit',    :as => 'edit_profile'
   put 'profile',      :to => 'users#update',  :as => 'update_profile'

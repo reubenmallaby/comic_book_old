@@ -17,7 +17,11 @@ gem 'jquery-rails'
 
 gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git"
 
-gem 'clearance'
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'
+gem 'devise'
+
 gem 'bootstrap-will_paginate'
 gem 'ledermann-rails-settings', :require => 'rails-settings'
 gem "koala"

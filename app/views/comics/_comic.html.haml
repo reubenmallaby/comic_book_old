@@ -7,46 +7,33 @@
   .span2
     = render :partial => "shared/social"
     = render :partial => "shared/ads"
-  .span8.comic= @comic ? image_tag(@comic.image.url(:original), :title => @comic.name) : image_tag("none.png", :title => "No comic found")
+
+  .span8.comic
+    = @comic ? image_tag(@comic.image.url(:original), :title => @comic.name) : image_tag("none.png", :title => "No comic found")
+    %br
+    %i= @comic.blank? ? "No comic found" : @comic.description
+    %br
+    %br
+    %ul.pager
+      %li= link_to " ", archived_path(@first.publish_date.year, @first.publish_date.month, @first.publish_date.day),                             :class => "btn btn-large icon-backward",      :title => "First :: #{@first.name}"              unless @first == @comic
+      %li= link_to " ", archived_path(@comic.previous.publish_date.year, @comic.previous.publish_date.month, @comic.previous.publish_date.day),  :class => "btn btn-large icon-step-backward", :title => "Previous :: #{@comic.previous.name}"  if @comic && @comic.previous
+      %li= link_to " ", archived_path(@comic.next.publish_date.year, @comic.next.publish_date.month, @comic.next.publish_date.day),              :class => "btn btn-large icon-step-forward",  :title => "Next :: #{@comic.next.name}"          if @comic && @comic.next
+      %li= link_to " ", archived_path(@latest.publish_date.year, @latest.publish_date.month, @latest.publish_date.day),                          :class => "btn btn-large icon-forward",       :title => "Latest :: #{@latest.name}"            unless @latest == @comic
+    %br
+    - if @comic
+      .row
+        .span2 &nbsp;
+        .span8
+          %h2 Comments
+          - if signed_in?
+            = form_for Comment.new, :url => comment_path(:parent_type => 'Comic', :parent_id => @comic.id), :remote => true do |f|
+              = f.text_area :message, :class => "span8", :rows => 4
+              %br
+              = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary"
+          #comments= render @comic.comments.reversed
   .span2
     = render :partial => "calendar", :locals => { :date => @date }
     = render :partial => "tags", :locals => { :tags => @comic.tags } if @comic
-%br
-.row
-  .span4 &nbsp;
-  .span4.cen
-    %i= @comic.blank? ? "No comic found" : @comic.description
-  .span4 &nbsp;
-%br
-.row
-  .span4 &nbsp;
-  .span4
-    %ul.pager
-      %li.previous
-        - unless @first == @comic
-          = link_to " ", archived_path(@first.publish_date.year, @first.publish_date.month, @first.publish_date.day), :class => "icon-backward", :title => "First"
-      %li
-        - if @comic && @comic.previous
-          = link_to " ", archived_path(@comic.previous.publish_date.year, @comic.previous.publish_date.month, @comic.previous.publish_date.day), :class => "icon-step-backward", :title => "Previous"
-      %li
-        - if @comic && @comic.next
-          = link_to " ", archived_path(@comic.next.publish_date.year, @comic.next.publish_date.month, @comic.next.publish_date.day), :class => "icon-step-forward", :title => "Next"
-      %li.next
-        - unless @latest == @comic
-          = link_to " ", archived_path(@latest.publish_date.year, @latest.publish_date.month, @latest.publish_date.day), :class => "icon-forward", :title => "Latest"
+
   .span4 &nbsp;
 
-%br
-- if @comic
-  .row
-    .span2 &nbsp;
-    .span8
-      %h2 Comments
-      - if signed_in?
-        = form_for Comment.new, :url => comment_path(:parent_type => 'Comic', :parent_id => @comic.id), :remote => true do |f|
-          = f.text_area :message, :class => "span8", :rows => 4
-          %br
-          = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary"
-      #comments= render @comic.comments.reversed
-    .span2 &nbsp;
-  %br

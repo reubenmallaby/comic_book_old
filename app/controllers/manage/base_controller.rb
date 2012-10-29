@@ -1,5 +1,5 @@
 class Manage::BaseController < ActionController::Base
-  include Clearance::Authentication
+  #include Clearance::Authentication
   before_filter :authorize
   before_filter :require_admin
 

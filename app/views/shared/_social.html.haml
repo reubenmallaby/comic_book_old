@@ -1,13 +1,6 @@
 %ul.unstyled.well
   %li
-    .fb-like-box{
-      :"data-href" => URI.escape(archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)),
-      :"data-width" => 292,
-      :"data-show-faces" => "false",
-      :"data-border-color" => "#FFFFFF",
-      :"data-stream" => "false",
-      :"data-header" => "false"
-    }
+    .fb-like-box{ :"data-href" => URI.escape(archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)), :"data-width" => 292, :"data-show-faces" => "false", :"data-border-color" => "#FFFFFF", :"data-stream" => "false", :"data-header" => "false" }
     %br
   %li
     = link_to image_tag('fb_share.png'), "https://www.facebook.com/dialog/feed?app_id=#{Settings.facebook_app_id}&link=#{archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)}&picture=#{@comic.image.url(:thumb)}&name=#{@comic.name}&caption=#{@comic.description}&description=#{@comic.description}&redirect_uri=#{archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)}", :title => "Share this on Facebook"

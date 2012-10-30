@@ -35,6 +35,9 @@ ComicBook::Application.routes.draw do
     resources :tags
   end
 
+  match "/404", :to => "errors#not_found"
+  match "/500", :to => "errors#server_side"
+
   root :to => 'comics#show'
 
 end

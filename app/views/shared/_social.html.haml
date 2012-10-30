@@ -1,20 +1,28 @@
-%ul.unstyled.well
-  %li
-    = link_to image_tag('fb_share.png'), "https://www.facebook.com/dialog/feed?app_id=#{Settings.facebook_app_id}&link=#{archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)}&picture=#{@comic.image.url(:thumb)}&name=#{@comic.name}&caption=#{@comic.description}&description=#{@comic.description}&redirect_uri=#{archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)}", :title => "Share this on Facebook"
-    %br
-    %br
-  %li
-    = link_to image_tag('twitter.png'), "http://twitter.com/share?url=#{archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)}", :title => "Tweet this!"
-    %br
-    %br
-  %li
-    = link_to(image_tag('feed-icon-28x28.png'), comics_url(:format => :atom), :title => "Grab the RSS feed")
-    %br
-    %br
-  %li
+- if @comic or @post
   - if @comic
+    - url = archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)
+    - rss_url = comics_url(:format => :atom)
+  - else
+    - url = archived_blog_url(@post.created_at.year, @post.created_at.month, @post.created_at.day)
+    - rss_url = posts_url(:format => :atom)
+  - esc_url = URI.escape(url)
+
+  %ul.unstyled.well
     %li
-      .fb-like{ :"data-href" => URI.escape(archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day)), :"data-send" => "false", :"data-layout" => "box_count", :"data-width" => "450", :"data-show-faces" => "false", :"data-font" => "arial"}
-  - if @post
+      = link_to image_tag('fb_share.png'), "https://www.facebook.com/dialog/feed?app_id=#{Settings.facebook_app_id}&link=#{esc_url}", :title => "Share this on Facebook"
+      %br
+      %br
     %li
-      .fb-like{ :"data-href" => URI.escape(archived_blog_url(@post.created_at.year, @post.created_at.month, @post.created_at.day)), :"data-send" => "false", :"data-layout" => "box_count", :"data-width" => "450", :"data-show-faces" => "false", :"data-font" => "arial"}
+      = link_to image_tag('twitter.png'), "http://twitter.com/share?url=#{url}", :title => "Tweet this!"
+      %br
+      %br
+    %li
+      = link_to(image_tag('feed-icon-28x28.png'), rss_url, :title => "Grab the RSS feed")
+      %br
+      %br
+    %li
+      .fb-like{ :"data-href" => esc_url, :"data-send" => "false", :"data-layout" => "box_count", :"data-width" => "450", :"data-show-faces" => "false", :"data-font" => "arial"}
+      %br
+      %br
+    %li= link_to "Permalink", url
+

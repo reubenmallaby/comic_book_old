@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def authorize
-    redirect_to root_url, error: "You must be logged in to comment" unless current_user && current_user.admin
+    redirect_to root_url, error: "You must be logged in to do that" unless current_user
   end
 
 end

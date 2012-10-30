@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
-  #include Clearance::Authentication
   protect_from_forgery
+
+  helper_method :authorize
 
   protected
 
   def authorize
-    current_user && current_user.admin
+    redirect_to root_url, error: "You must be logged in to comment" unless current_user && current_user.admin
   end
 
 end

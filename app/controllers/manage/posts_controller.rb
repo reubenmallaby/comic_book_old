@@ -1,4 +1,5 @@
 class Manage::PostsController < Manage::BaseController
+
   def index
     @page = params[:page] || 1
     @per = params[:per] || 10

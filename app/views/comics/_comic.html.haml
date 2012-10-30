@@ -30,6 +30,10 @@
               = f.text_area :message, :class => "span8", :rows => 4
               %br
               = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary"
+          - else
+            = link_to "Sign in", new_session_path("user")
+            |
+            = link_to "Sign in with Facebook", omniauth_authorize_path("user", "facebook")
           #comments= render @comic.comments.reversed
   .span2
     = render :partial => "calendar", :locals => { :date => @date }

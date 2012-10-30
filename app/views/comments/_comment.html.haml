@@ -1,4 +1,6 @@
 = div_for comment, :class => "well#{comment.user.admin ? ' label-warning' : ''}" do
-  = "Posted #{time_ago_in_words(comment.created_at)} ago by #{comment.user.name}"
+  = image_tag "http://www.gravatar.com/avatar/" + Digest::MD5.hexdigest(comment.user.email), :class => "pull-left"
+  .pull-right= "Posted #{time_ago_in_words(comment.created_at)} ago by #{comment.user.name}"
   %br
-  = comment.message
+  .pull-left= comment.message
+  .clearfix

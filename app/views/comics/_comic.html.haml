@@ -15,10 +15,14 @@
     %br
     %br
     %ul.pager
-      %li= link_to " ", archived_path(@first.publish_date.year, @first.publish_date.month, @first.publish_date.day),                             :class => "btn btn-large icon-backward",      :title => "First :: #{@first.name}"              unless @first == @comic
-      %li= link_to " ", archived_path(@comic.previous.publish_date.year, @comic.previous.publish_date.month, @comic.previous.publish_date.day),  :class => "btn btn-large icon-step-backward", :title => "Previous :: #{@comic.previous.name}"  if @comic && @comic.previous
-      %li= link_to " ", archived_path(@comic.next.publish_date.year, @comic.next.publish_date.month, @comic.next.publish_date.day),              :class => "btn btn-large icon-step-forward",  :title => "Next :: #{@comic.next.name}"          if @comic && @comic.next
-      %li= link_to " ", archived_path(@latest.publish_date.year, @latest.publish_date.month, @latest.publish_date.day),                          :class => "btn btn-large icon-forward",       :title => "Latest :: #{@latest.name}"            unless @latest == @comic
+      %li{ :class => "previous #{@first==@comic ? 'disabled' : '' }" }
+        = link_to "&laquo; First".html_safe, archived_comic_path(@first),                    :title => "First", :class => "btn btn-large "
+      %li{ :class => "#{(@comic && @comic.previous) ? '' : 'disabled' }" }
+        = link_to "&larr; Previous".html_safe, archived_comic_path(@comic.previous),        :title => "Previous", :class => "btn btn-large "
+      %li{ :class => "#{(@comic && @comic.next) ? '' : 'disabled' }" }
+        = link_to "Next &rarr;".html_safe, archived_comic_path(@comic.next),                :title => "Next", :class => "btn btn-large"
+      %li{ :class => "next #{@latest==@comic ? 'disabled' : '' }" }
+        = link_to "Latest &raquo;".html_safe, archived_comic_path(@latest),                    :title => "Latest", :class => "btn btn-large "
     %br
     - if @comic
       .row
@@ -34,6 +38,8 @@
             = link_to "Sign in", new_session_path("user")
             |
             = link_to "Sign in with Facebook", omniauth_authorize_path("user", "facebook")
+          %br
+          .clearfix
           #comments= render @comic.comments.reversed
   .span2
     = render :partial => "calendar", :locals => { :date => @date }

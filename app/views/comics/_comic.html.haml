@@ -29,7 +29,7 @@
             = form_for Comment.new, :url => comment_path(:parent_type => 'Comic', :parent_id => @comic.id), :remote => true do |f|
               = f.text_area :message, :class => "span8", :rows => 4
               %br
-              = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary"
+              = f.submit "Comment as #{current_user.name}", :class => "btn btn-primary pull-right"
           - else
             = link_to "Sign in", new_session_path("user")
             |

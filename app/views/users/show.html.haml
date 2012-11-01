@@ -1,5 +1,10 @@
-%h1= current_user.name
-%p=current_user.email
-%p= "Member since #{l current_user.created_at, :format => '%M %h %Y'}"
-%p= link_to 'Edit account', edit_profile_path
-%p= link_to 'Change password', edit_user_password_path(current_user)
+.hero-unit
+  %h1= current_user.name
+  %p=current_user.email
+  %p= "Member since #{l current_user.created_at, :format => '%m %h %Y'}"
+
+
+%p
+  = link_to 'Edit account', edit_profile_path
+  |
+  = link_to 'Change password', edit_user_password_path(current_user)

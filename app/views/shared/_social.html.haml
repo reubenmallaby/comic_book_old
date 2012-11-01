@@ -7,7 +7,7 @@
     - rss_url = posts_url(:format => :atom)
   - esc_url = URI.escape(url)
 
-  %ul.unstyled.well
+  %ul.unstyled.well.alert-info
     %li
       = link_to image_tag('fb_share.png'), "https://www.facebook.com/dialog/feed?app_id=#{Settings.facebook_app_id}&link=#{esc_url}", :title => "Share this on Facebook"
       %br

@@ -1,3 +1,5 @@
+require 'watermark'
+
 class Comic < ActiveRecord::Base
 
   attr_accessible :description, :name, :publish_date, :series_id, :image, :sold, :book_id
@@ -5,9 +7,19 @@ class Comic < ActiveRecord::Base
   belongs_to :chapter
 
   has_attached_file :image,
-                    :styles => { :original => "800x600>", :thumb => "100x100>" },
+                    :styles => {
+                        :original => {
+                            :geometry => '800x600>',
+                            :watermark_path => "#{Rails.root}/public/original_watermark.png"
+                        },
+                        :thumb => {
+                            :geometry => '100x100>',
+                            :watermark_path => "#{Rails.root}/public/thumb_watermark.png"
+                        }
+                    },
                     :url => '/comics/:id/:style/:filename',
-                    :default_url => "/assets/none_:style.png"
+                    :default_url => "/assets/none_:style.png",
+                    :processors => [:watermark]
 
 
   validates_presence_of :name, :image

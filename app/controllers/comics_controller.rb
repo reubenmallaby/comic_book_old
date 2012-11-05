@@ -36,7 +36,7 @@ class ComicsController < ApplicationController
 
   def show_by_day
     @date = Date.parse "#{params[:day]}-#{params[:month]}-#{params[:year]}"
-    @comic = Comic.where(:publish_date => @date).first
+    @comic = Comic.where(:publish_date => @date).first || nil
     get_calendar
   end
 

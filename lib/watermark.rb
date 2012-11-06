@@ -54,8 +54,9 @@ module Paperclip
         params << tofile(dst)
         begin
           success = Paperclip.run(command, params.flatten.compact.collect{|e| "'#{e}'"}.join(" "))
-        rescue PaperclipCommandLineError
-          raise PaperclipError, "There was an error processing the watermark for #{@basename}" if @whiny
+        rescue Exception => e #PaperclipCommandLineError
+          #raise PaperclipError, "There was an error processing the watermark for #{@basename}" if @whiny
+          raise "There was an error processing the watermark for #{@basename} >>> With message : #{e.message}" if @whiny
         end
       end
 

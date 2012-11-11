@@ -6,8 +6,11 @@
     = f.label :site_title, :class => "control-label"
     .controls= text_field_tag :site_title, Settings.site_title, :class => 'input-xlarge'
   .control-group
-    = f.label :site_title, :class => "control-label"
-    .controls= f.select :site_theme, @themes.map {|t| [t,t] }, :class => 'input-xlarge' #, Settings.site_theme
+    = f.label :site_description, :class => "control-label"
+    .controls= text_field_tag :site_description, Settings.site_description, :class => 'input-xlarge'
+  -#.control-group
+  -#  = f.label :site_title, :class => "control-label"
+  -#  .controls= f.select :site_theme, @themes.map {|t| [t,t] }, :class => 'input-xlarge' #, Settings.site_theme
   .control-group
     = f.label :uses_blog, :class => "control-label"
     .controls= check_box_tag :uses_blog, 1, Settings.uses_blog

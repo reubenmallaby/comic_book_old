@@ -9,7 +9,8 @@ class Manage::SettingsController < Manage::BaseController
 
   def update
     Settings.site_title = params[:site_title]
-    Settings.site_theme = params[:site_theme]
+    Settings.site_description = params[:site_description]
+    #Settings.site_theme = params[:site_theme]
     Settings.uses_books = !params[:uses_books].blank?
     Settings.uses_blog = !params[:uses_blog].blank?
     Settings.uses_facebook = !params[:uses_facebook].blank?

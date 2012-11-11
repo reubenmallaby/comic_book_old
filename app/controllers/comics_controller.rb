@@ -48,15 +48,17 @@ class ComicsController < ApplicationController
   end
 
   def get_calendar
+    today = Date.today
     unless @date
       if @comic
         @date = @comic.publish_date
       else
-        @date = Date.today
+        @date = today
       end
+      @date = today if @comic.publish_date > today
     end
     @comics_for_month = {}
-    Comic.for_month(Date.new(@date.year, @date.month)).each do |c|
+    Comic.for_month(Date.new(@date.year, @date.month)).available.each do |c|
       @comics_for_month[c.publish_date.day] = c
     end
     @first_day = Date.new(@date.year, @date.month).wday - 1

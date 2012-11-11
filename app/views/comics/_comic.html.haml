@@ -16,7 +16,7 @@
     %br
     %ul.pager
       %li{ :class => "previous #{@first==@comic ? 'disabled' : '' }" }
-        = link_to "&laquo; First".html_safe, archived_comic_path(@first),            :title => "First", :class => "btn btn-large " if @comic
+        = link_to "&laquo; First".html_safe, archived_comic_path(@first),            :title => "First", :class => "btn btn-large "
       %li{ :class => "#{(@comic && @comic.previous) ? '' : 'disabled' }" }
         = link_to "&larr; Previous".html_safe, archived_comic_path(@comic.previous), :title => "Previous", :class => "btn btn-large " if @comic
         = link_to "&larr; Previous".html_safe, "#",                                  :title => "Previous", :class => "btn btn-large disabled" unless @comic
@@ -24,7 +24,7 @@
         = link_to "Next &rarr;".html_safe, archived_comic_path(@comic.next),         :title => "Next", :class => "btn btn-large" if @comic
         = link_to "Next &rarr;".html_safe, "#",                                      :title => "Next", :class => "btn btn-large disabled" unless @comic
       %li{ :class => "next #{@latest==@comic ? 'disabled' : '' }" }
-        = link_to "Latest &raquo;".html_safe, archived_comic_path(@latest),          :title => "Latest", :class => "btn btn-large " if @comic
+        = link_to "Latest &raquo;".html_safe, archived_comic_path(@latest),          :title => "Latest", :class => "btn btn-large "
     %br
     - if @comic
       .row

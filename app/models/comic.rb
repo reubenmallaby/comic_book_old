@@ -40,6 +40,7 @@ class Comic < ActiveRecord::Base
   scope :for_month, lambda { |date|
     where("publish_date between ? and ?", date, date + 1.month)
   }
+  scope :available, where("publish_date <= ? ", Date.today).latest
   scope :before, lambda { |date|
     where("publish_date < ? ", date).
       latest

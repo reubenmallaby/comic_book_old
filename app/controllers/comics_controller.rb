@@ -3,8 +3,8 @@ class ComicsController < ApplicationController
   before_filter :get_linked
 
   def index
-    @comics = Comic.latest.limit(10)
-    @comic = Comic.latest.first
+    @comics = Comic.latest.available.limit(10)
+    @comic = @comics.first
 
     respond_to do |format|
       format.html do
@@ -16,13 +16,13 @@ class ComicsController < ApplicationController
   end
 
   def archive
-    @comics = Comic.group(&:"YEAR(publish_date)").group(&:"MONTH(publish_date)").order("publish_date asc")
+    @comics = Comic.group(&:"YEAR(publish_date)").available.group(&:"MONTH(publish_date)").order("publish_date asc")
   end
 
   def tagged
     @tag = Tag.find_by_name params[:tag]
     redirect_to root_url unless @tag
-    @comics = @tag.comics.group(&:"YEAR(publish_date)").group(&:"MONTH(publish_date)").order("publish_date asc")
+    @comics = @tag.comics.available.group(&:"YEAR(publish_date)").group(&:"MONTH(publish_date)").order("publish_date asc")
   end
 
   def show
@@ -36,15 +36,15 @@ class ComicsController < ApplicationController
 
   def show_by_day
     @date = Date.parse "#{params[:day]}-#{params[:month]}-#{params[:year]}"
-    @comic = Comic.where(:publish_date => @date).first || nil
+    @comic = Comic.available.where(:publish_date => @date).first || nil
     get_calendar
   end
 
   protected
 
   def get_linked
-    @first  = Comic.oldest.first
-    @latest = Comic.latest.first
+    @first  = Comic.oldest.available.first
+    @latest = Comic.latest.available.first
   end
 
   def get_calendar

@@ -3,7 +3,7 @@ class ComicsController < ApplicationController
   before_filter :get_linked
 
   def index
-    @comics = Comic.latest.available.limit(10)
+    @comics = Comic.available.latest.limit(10)
     @comic = @comics.first
 
     respond_to do |format|
@@ -29,7 +29,7 @@ class ComicsController < ApplicationController
     if params[:id]
       @comic = Comic.find(params[:id])
     else
-      @comic = Comic.latest.first
+      @comic = Comic.available.latest.first
     end
     get_calendar
   end

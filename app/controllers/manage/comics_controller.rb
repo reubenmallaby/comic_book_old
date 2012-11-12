@@ -31,7 +31,7 @@ class Manage::ComicsController < Manage::BaseController
       if Settings.uses_facebook
         begin
           koala_page = Koala::Facebook::API.new(Settings.facebook_page_access_token)
-          koala_page.put_connections(Settings.facebook_page, 'feed', :message => "New image - #{@comic.name}", :picture => "http://comicbook.mallaby.me#{@comic.image.url(:original)}", :link => archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day))
+          koala_page.put_connections(Settings.facebook_page, 'feed', :message => "New image - #{@comic.name}", :picture => request.protocol + request.host + @comic.image.url(:original), :link => request.protocol + request.host + archived_url(@comic.publish_date.year, @comic.publish_date.month, @comic.publish_date.day))
         rescue Exception => e
           #TODO
           #Notify user that they need to update their access tokens

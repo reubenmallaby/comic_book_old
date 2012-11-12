@@ -16,7 +16,7 @@ class ComicsController < ApplicationController
   end
 
   def archive
-    @comics = Comic.group(&:"YEAR(publish_date)").available.group(&:"MONTH(publish_date)").order("publish_date asc")
+    @comics = Comic.group(&:"YEAR(publish_date)").available.group(&:"MONTH(publish_date)").order("publish_date desc")
   end
 
   def tagged

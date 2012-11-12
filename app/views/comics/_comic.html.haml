@@ -11,6 +11,7 @@
   .span8.comic
     = @comic ? image_tag(@comic.image.url(:original), :title => @comic.name, :class => "shadowed") : image_tag("none.png", :title => "No comic found", :class => "shadowed")
     %br
+    %br
     %i= @comic.blank? ? "No comic found" : @comic.description
     %br
     %br

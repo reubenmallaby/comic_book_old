@@ -1,7 +1,6 @@
 %h2 Settings
 
 = form_for manage_settings_path, :html => { :class => "form-horizontal" } do |f|
-  %h3 Site
   .control-group
     = f.label :site_title, :class => "control-label"
     .controls= text_field_tag :site_title, Settings.site_title, :class => 'input-xlarge'
@@ -20,64 +19,62 @@
   .control-group
     = f.label :uses_facebook, :class => "control-label"
     .controls= check_box_tag :uses_facebook, 1, Settings.uses_facebook
+    .controls
+      #settings_facebook{ :style => "display:#{(Settings.uses_facebook ? "block" : "none")}" }
+        %h3 Facebook
+        .control-group
+          = f.label :facebook_app_id, :class => "control-label"
+          .controls
+            = text_field_tag :facebook_app_id, Settings.facebook_app_id, :class => 'input-xlarge'
+        .control-group
+          = f.label :facebook_app_secret, :class => "control-label"
+          .controls= text_field_tag :facebook_app_secret, Settings.facebook_app_secret, :class => 'input-xlarge'
+        .control-group
+          = f.label :facebook_page_access_token, :class => "control-label"
+          .controls= text_field_tag :facebook_page_access_token, Settings.facebook_page_access_token, :class => 'input-xlarge'
+        .control-group
+          = f.label :facebook_page_id, :class => "control-label"
+          .controls= text_field_tag :facebook_page_id, Settings.facebook_page_id, :class => 'input-xlarge'
+        .control-group
+          = f.label :facebook_access_token, :class => "control-label"
+          .controls= text_field_tag :facebook_access_token, Settings.facebook_access_token, :class => 'input-xlarge'
+        %br
   .control-group
     = f.label :facebook_page, :class => "control-label"
     .controls= text_field_tag :facebook_page, Settings.facebook_page, :class => 'input-xlarge'
   .control-group
     = f.label :uses_twitter, :class => "control-label"
     .controls= check_box_tag :uses_twitter, 1, Settings.uses_twitter
+    .controls
+      #settings_twitter{ :style => "display:#{(Settings.uses_twitter ? "block" : "none")}" }
+        %h3 Twitter
+        .control-group
+          = f.label :twitter_username, :class => "control-label"
+          .controls= text_field_tag :twitter_username, Settings.twitter_username, :class => 'input-xlarge'
+        .control-group
+          = f.label :twitter_password, :class => "control-label"
+          .controls= text_field_tag :twitter_password, Settings.twitter_password, :class => 'input-xlarge'
+        %br
   .control-group
     = f.label :uses_ads, :class => "control-label"
     .controls= check_box_tag :uses_ads, 1, Settings.uses_ads
+    .controls
+      #settings_ads{ :style => "display:#{(Settings.uses_ads ? "block" : "none")}" }
+        %h3 Ads by Google
+        .control-group
+          = f.label :ads_code, :class => "control-label"
+          .controls= text_field_tag :ads_code, Settings.ads_code, :class => 'input-xlarge'
+        %br
   .control-group
     = f.label :uses_ga, :class => "control-label"
     .controls= check_box_tag :uses_ga, 1, Settings.uses_ga
+    .controls
+      #settings_ga{ :style => "display:#{(Settings.uses_ga ? "block" : "none")}" }
+        %h3 Google Analytics
+        .control-group
+          = f.label :ga_id, :class => "control-label"
+          .controls= text_field_tag :ga_id, Settings.ga_id, :class => 'input-xlarge'
+        %br
   %br
-
-
-  #settings_facebook{ :style => "display:#{(Settings.uses_facebook ? "block" : "none")}" }
-    %h3 Facebook
-    .control-group
-      = f.label :facebook_app_id, :class => "control-label"
-      .controls
-        = text_field_tag :facebook_app_id, Settings.facebook_app_id, :class => 'input-xlarge'
-    .control-group
-      = f.label :facebook_app_secret, :class => "control-label"
-      .controls= text_field_tag :facebook_app_secret, Settings.facebook_app_secret, :class => 'input-xlarge'
-    .control-group
-      = f.label :facebook_page_access_token, :class => "control-label"
-      .controls= text_field_tag :facebook_page_access_token, Settings.facebook_page_access_token, :class => 'input-xlarge'
-    .control-group
-      = f.label :facebook_page_id, :class => "control-label"
-      .controls= text_field_tag :facebook_page_id, Settings.facebook_page_id, :class => 'input-xlarge'
-    .control-group
-      = f.label :facebook_access_token, :class => "control-label"
-      .controls= text_field_tag :facebook_access_token, Settings.facebook_access_token, :class => 'input-xlarge'
-    %br
-
-  #settings_twitter{ :style => "display:#{(Settings.uses_twitter ? "block" : "none")}" }
-    %h3 Twitter
-    .control-group
-      = f.label :twitter_username, :class => "control-label"
-      .controls= text_field_tag :twitter_username, Settings.twitter_username, :class => 'input-xlarge'
-    .control-group
-      = f.label :twitter_password, :class => "control-label"
-      .controls= text_field_tag :twitter_password, Settings.twitter_password, :class => 'input-xlarge'
-    %br
-
-  #settings_ads{ :style => "display:#{(Settings.uses_ads ? "block" : "none")}" }
-    %h3 Ads by Google
-    .control-group
-      = f.label :ads_code, :class => "control-label"
-      .controls= text_field_tag :ads_code, Settings.ads_code, :class => 'input-xlarge'
-    %br
-
-  #settings_ga{ :style => "display:#{(Settings.uses_ga ? "block" : "none")}" }
-    %h3 Google Analytics
-    .control-group
-      = f.label :ga_id, :class => "control-label"
-      .controls= text_field_tag :ga_id, Settings.ga_id, :class => 'input-xlarge'
-    %br
-
   .control-group
     .controls= f.submit "Save settings", :class => "btn btn-large btn-primary"

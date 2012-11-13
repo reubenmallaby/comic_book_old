@@ -11,12 +11,12 @@
         - cls += " active"
         - active = true
       %div{ :class => cls }
-        %h2.label-info.label=year
+        %h2.alert-info=year
         %ul.unstyled.indented.span8
           - comics_by_month = comics.group_by { |y| y.publish_date.month }
           - comics_by_month.each do |month, comics|
             %li.span10
-              %h3.label.label-warning= t("date.month_names")[month]
+              %h3.alert-warning= t("date.month_names")[month]
               %ul.unstyled.span8.indented
                 - comics.each do |c|
                   %li= link_to "#{c.publish_date.day.ordinalize} :: #{c.name}", archived_path(year, month, c.publish_date.day)

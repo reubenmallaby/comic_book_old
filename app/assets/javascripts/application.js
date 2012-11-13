@@ -42,4 +42,7 @@ $(document).ready(function(){
   $('#uses_ads').change(function() { $('#settings_ads').toggle('slow'); });
   $('#uses_ga').change(function() { $('#settings_ga').toggle('slow'); });
 
+
+  $('.carousel').carousel();
+
 });

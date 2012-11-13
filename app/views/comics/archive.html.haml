@@ -3,21 +3,20 @@
 
 - active = false
 - comics_by_year = @comics.group_by { |c| c.publish_date.year }
-- comics_by_year.each do |year, comics|
-  #archiveCarousel.carousel.slide
-    .carousel-inner
+#archiveCarousel.carousel.slide
+  .carousel-inner
+    - comics_by_year.each do |year, comics|
       - cls = "item"
       - unless active
-        - cls += "active"
+        - cls += " active"
         - active = true
       %div{ :class => cls }
-        .well.label-info.label
-          %h2=year
+        %h2.label-info.label=year
         %ul.unstyled.indented.span8
           - comics_by_month = comics.group_by { |y| y.publish_date.month }
           - comics_by_month.each do |month, comics|
             %li.span10
-              .well= link_to t("date.month_names")[month], archived_path(year, month, comics.first.publish_date.day)
+              %h3.label.label-warning= t("date.month_names")[month]
               %ul.unstyled.span8.indented
                 - comics.each do |c|
                   %li= link_to "#{c.publish_date.day.ordinalize} :: #{c.name}", archived_path(year, month, c.publish_date.day)
@@ -25,6 +24,6 @@
               %br
             %br
           %br
-    %a.carousel-control.left{ :href  => "#archiveCarousel", :"data-slide" => "prev" }‹
-    %a.carousel-control.right{ :href => "#archiveCarousel", :"data-slide" => "next" }›
+  %a.carousel-control.left{ :href  => "#archiveCarousel", :"data-slide" => "prev" }‹
+  %a.carousel-control.right{ :href => "#archiveCarousel", :"data-slide" => "next" }›
 

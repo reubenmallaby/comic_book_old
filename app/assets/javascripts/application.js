@@ -43,6 +43,6 @@ $(document).ready(function(){
   $('#uses_ga').change(function() { $('#settings_ga').toggle('slow'); });
 
 
-  $('.carousel').carousel();
+  $('.carousel').carousel({interval: 360000});
 
 });

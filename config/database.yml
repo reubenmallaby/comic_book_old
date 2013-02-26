@@ -2,9 +2,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: billofarts
+  database: comicbook
   pool: 5
-  username: billofarts
-  password: "3a4wUrEc"
-  host: billofarts.mallaby.me
-
+  username: comicbook
+  password: "comicbook"
+  host: localhost

@@ -8,6 +8,7 @@ class Manage::SettingsController < Manage::BaseController
   end
 
   def update
+    Settings.host = params[:host]
     Settings.site_title = params[:site_title]
     Settings.site_description = params[:site_description]
     #Settings.site_theme = params[:site_theme]

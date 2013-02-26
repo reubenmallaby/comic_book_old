@@ -14,6 +14,9 @@ ComicBook::Application.routes.draw do
 
   post '/comments/:parent_type/:parent_id', :to => 'comments#create', :as => 'comment'
 
+  #get "sign_in", :to => "devise/sessions#new"
+  #get "sign_up", :to => "devise/users#new"
+
   resources :posts, :only => [:index, :show], :path => 'blog'
   resources :comics, :only => [:index, :show]
 

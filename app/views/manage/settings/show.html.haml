@@ -2,6 +2,9 @@
 
 = form_for manage_settings_path, :html => { :class => "form-horizontal" } do |f|
   .control-group
+    = f.label :host, :class => "control-label"
+    .controls= text_field_tag :host, Settings.host, :class => 'input-xlarge'
+  .control-group
     = f.label :site_title, :class => "control-label"
     .controls= text_field_tag :site_title, Settings.site_title, :class => 'input-xlarge'
   .control-group

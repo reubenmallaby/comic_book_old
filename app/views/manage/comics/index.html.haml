@@ -1,4 +1,5 @@
 - model_class = Comic
+.pull-right= link_to t('.new', :default => t("helpers.links.new")), new_manage_comic_path, :class => 'btn btn-primary'
 .page-header
   %h2=t '.title', :default => model_class.model_name.human.pluralize
 %table.full.table.table-striped

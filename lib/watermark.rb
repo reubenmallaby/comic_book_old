@@ -44,8 +44,9 @@ module Paperclip
       params << tofile(dst)
       begin
         success = Paperclip.run(command, params.flatten.compact.collect{|e| "'#{e}'"}.join(" "))
-      rescue PaperclipCommandLineError
-        raise PaperclipError, "There was an error resizing and cropping #{@basename}" if @whiny
+      rescue Esception => e #PaperclipCommandLineError
+        #raise PaperclipError, "There was an error resizing and cropping #{@basename}" if @whiny
+        raise "There was an error resizing and cropping #{@basename} (#{e.message})" if @whiny
       end
 
       if watermark_path
